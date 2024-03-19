@@ -1,0 +1,14 @@
+{
+  "name": "20240319_capstone_hangarbay",
+  "version": "1.0.0",
+  "description": "This project focuses on managing and streamlining the repair and maintenance pipelines in hangars.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ayush Bhople",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^8.2.2"
+  }
+}

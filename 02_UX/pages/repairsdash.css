@@ -1,0 +1,142 @@
+/* Common Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff; /* White background */
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #382f94; /* Purple */
+  color: #ffc627; /* Gold */
+  padding: 15px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  margin: 0;
+  font-size: 24px;
+}
+
+.navbar .nav-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar .nav-links li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.navbar .nav-links li:last-child {
+  margin-right: 0;
+}
+
+.navbar .nav-links a {
+  color: #ffc627; /* Gold */
+  text-decoration: none;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #382f94; /* Purple */
+  color: #ffffff; /* White */
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  padding-top: 60px;
+}
+
+.sidebar-links {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-links li {
+  margin-bottom: 10px;
+}
+
+.sidebar-links a {
+  display: block;
+  color: #ffffff; /* White */
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+.sidebar-links a:hover {
+  background-color: #4a409c; /* Darker purple on hover */
+}
+
+/* Main Content */
+.content {
+  margin-left: 200px; /* Same width as sidebar */
+  padding: 20px;
+}
+
+.content-header {
+  display: flex;
+  align-items: center;
+}
+
+.section-heading {
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+.divider {
+  flex-grow: 2;
+  height: 1px;
+  background-color: #ccc; /* Light gray */
+}
+
+.tab-buttons {
+  display: flex;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.tab-button.active {
+  font-weight: bold;
+  border-bottom: 2px solid #382f94; /* Purple */
+}
+
+.content-section {
+  margin-top: 20px;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 150px; /* Adjusted width for smaller screens */
+  }
+
+  .content {
+    margin-left: 150px; /* Adjusted margin for smaller screens */
+  }
+}

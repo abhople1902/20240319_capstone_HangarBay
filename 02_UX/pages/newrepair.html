@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repair Admin Dashboard</title>
+  <link rel="stylesheet" href="newrepair.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <h1 class="logo">Repair Admin</h1>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul class="sidebar-links">
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Add Repair</a></li>
+      <li><a href="#">View Repairs</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+    <div class="container">
+      <h2>Add New Repair</h2>
+      <form class="repair-form">
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input type="text" id="description" name="description" required>
+        </div>
+        <div class="form-group">
+          <label for="category">Category:</label>
+          <select id="category" name="category" required>
+            <option value="Airframe">Airframe</option>
+            <option value="Avionics">Avionics</option>
+            <option value="Engine">Engine</option>
+            <option value="Interior">Interior</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="scheduledDate">Scheduled Date:</label>
+          <input type="date" id="scheduledDate" name="scheduledDate" required>
+        </div>
+        <button type="submit">Add Repair</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>
