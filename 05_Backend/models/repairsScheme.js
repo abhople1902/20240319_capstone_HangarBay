@@ -38,7 +38,8 @@ const RepairSchema = new mongoose.Schema({
   inventoryItems: [InventoryItem.schema],
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    required: true
   },
   duration: Number
 });
