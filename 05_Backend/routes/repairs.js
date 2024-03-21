@@ -51,20 +51,19 @@ router.post('/create', async (req, res) => {
 
 
 /**
- * API to get a repair by id
+ * API to get all repairs
  */
-router.get('/find/:id', async (req, res) => {
+router.get('/all', async (req, res) => {
   const repairId = req.params.id;
 
   try {
-    // Find the repair by ID
-    const doc = await repair.findById(repairId);
+    const doc = await repair.find();
 
-    // Check if the repair exists
+    // Check if the repairs exists
     if (!doc) {
-      return res.status(404).json({ message: 'Repair not found' });
+      return res.status(404).json({ message: 'No Repairs found. Come back later' });
     }
-    // Return the repair
+    // Return the repairs
     res.json(doc);
   } catch (error) {
     console.error(error);

@@ -14,11 +14,6 @@ router.post('/operator', async (req, res) => {
   special = req.body;
   console.log(req.body);
 
-  // Converting the array of strings to an array of objects
-  // const specializationObjects = specializations.map((specialization) => {
-  //   return { type: specialization };
-  // });
-
   try {
     let item = await technician.findOne({ specializations: special.specializations })
 
