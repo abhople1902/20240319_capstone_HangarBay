@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const _ = require('lodash');
-const inventory = require('../models/inventoryScheme');
+const inventory = require('../models/inventoryModel');
 
 const { validateInventoryItem } = require('../validators/itemvalidator');
 const { ConnectionClosedEvent } = require('mongodb');

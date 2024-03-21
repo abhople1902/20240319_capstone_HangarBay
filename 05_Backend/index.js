@@ -1,7 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const inventoryRoute = require('./routes/inventory');
-// const authenticate = require('./middleware/authenticate');
+const complianceRoute = require('./routes/compliance');
+const repairRoute = require('./routes/repairs');
+const technicianRoute = require('./routes/technician');
+
 const { JWT_SECRET } = require('../05_Backend/config');
 
 const app = express();
@@ -11,9 +14,9 @@ const MONGODB_URI = 'mongodb+srv://Ayush:2BXNWx4qaZkr3C5y@cluster0.ijs1ymf.mongo
 
 app.use(express.json());
 app.use('/inventory', inventoryRoute);
-// app.use('/compliance', signupRouter);
-// app.use('/repairs', profileRouter);
-// app.use('/tech', shipPlace);
+app.use('/compliance', complianceRoute);
+app.use('/repairs', repairRoute);
+app.use('/technician', technicianRoute);
 
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })

@@ -20,7 +20,12 @@ const TechnicianSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
 });
 
+const Technician = mongoose.model('Technician', TechnicianSchema);
 
-module.exports = TechnicianSchema;
+module.exports = Technician;
