@@ -19,12 +19,12 @@ const RepairSchema = new mongoose.Schema({
     required: true
   },
   compliance: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: Compliance
+    type: Compliance
   },
   scheduledDate: {
     type: Date,
-    required: true
+    required: true,
+    default: Date.now
   },
   status: {
     type: String,
@@ -32,15 +32,29 @@ const RepairSchema = new mongoose.Schema({
     default: 'In Progress'
   },
   assignedTechnician: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: Technician
+    type: Technician,
+    // required: true,
+    // default: "Open to all"
   },
-  inventoryItems: [InventoryItem.schema],
+  inventoryItems: [{
+    type: InventoryItem
+  }],
+  // inventoryItems: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: InventoryItem,
+  //   required: true,
+  //   default: "Spare"
+  // },
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    required: true
   },
-  duration: Number
+  durationRequired: {
+    type: Number,
+    required: true,
+    default: 1
+  }
 });
 
 // Defining virtual to dynamically populate inventory items based on category

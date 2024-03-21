@@ -17,6 +17,4 @@ const ComplianceSchema = new mongoose.Schema({
 });
 
 
-const Compliance = mongoose.model('Compliance', ComplianceSchema);
-
-module.exports = Compliance;
+module.exports = ComplianceSchema;

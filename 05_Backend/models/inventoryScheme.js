@@ -21,11 +21,10 @@ const InventoryItemSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    required: true
   },
 });
 
-// Define InventoryItem model
-const InventoryItem = mongoose.model('InventoryItem', InventoryItemSchema);
 
-module.exports = InventoryItem;
+module.exports = InventoryItemSchema;

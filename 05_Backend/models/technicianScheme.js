@@ -20,13 +20,7 @@ const TechnicianSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
 });
 
-// Define Technician model
-const Technician = mongoose.model('Technician', TechnicianSchema);
 
-module.exports = Technician;
+module.exports = TechnicianSchema;
