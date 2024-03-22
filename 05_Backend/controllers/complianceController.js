@@ -39,11 +39,7 @@ async function getComplianceDocument(req, res){
   console.log(title);
 
   try {
-    // var item = new Array();
     let item = await compliance.find({ title: title })
-    // items.forEach((x) => {
-    //   item.push(x);
-    // })
 
     res.json(item);
 
