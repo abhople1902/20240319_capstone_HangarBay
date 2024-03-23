@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-
+/**
+ * 
+ */
 const ComplianceSchema = new mongoose.Schema({
   title: {
     type: String,

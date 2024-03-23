@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const inventoryItemSchema = require('./inventoryScheme');
 
 // Define schema for inventory administrators
 const InventoryAdminSchema = new mongoose.Schema({
@@ -20,10 +21,9 @@ const InventoryAdminSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+  orders: [{
+    type: inventoryItemSchema
+  }]
 });
 
 // Define InventoryAdmin model

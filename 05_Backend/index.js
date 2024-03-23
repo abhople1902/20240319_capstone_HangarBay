@@ -1,9 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const inventoryRoute = require('./routes/inventory');
-const complianceRoute = require('./routes/compliance');
-const repairRoute = require('./routes/repairs');
-const technicianRoute = require('./routes/technician');
+const inventoryRoute = require('./routers/inventoryRouter');
+const complianceRoute = require('./routers/complianceRouter');
+const repairRoute = require('./routers/repairsRouter');
+const technicianRoute = require('./routers/technicianRouter');
 
 const { JWT_SECRET } = require('../05_Backend/config');
 

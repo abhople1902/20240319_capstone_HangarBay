@@ -19,11 +19,7 @@ const TechnicianSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
+  }
 });
 
 const Technician = mongoose.model('Technician', TechnicianSchema);

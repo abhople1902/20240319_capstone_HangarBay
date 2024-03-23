@@ -3,56 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inventory Management</title>
+  <title>Repair Admin Dashboard</title>
   <link rel="stylesheet" href="newitem.css">
 </head>
 <body>
-  <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <button class="toggle-button" onclick="toggleSidebar()">☰</button>
-    <div class="sidebar-content">
-      <h3>Categories</h3>
-      <ul class="sidebar-links">
-        <li><a href="#">Airframe</a></li>
-        <li><a href="#">Avionics</a></li>
-        <li><a href="#">Engine</a></li>
-        <li><a href="#">Interior</a></li>
-      </ul>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <h1 class="logo">Inventory management</h1>
+      <button class="sandwich-button">&#9776;</button> <!-- Sandwich button -->
+      <ul class="nav-links">
+        <li><a href="#">Repairs Dashboard</a></li>
     </div>
-  </aside>
+  </nav>
+
+  <!-- Sidebar -->
+  <!-- <div class="sidebar">
+    <ul class="sidebar-links">
+      <li><a href="#">Airframe</a></li>
+      <li><a href="#">Avionics</a></li>
+      <li><a href="#">Engine</a></li>
+      <li><a href="#">Interior</a></li>
+    </ul>
+  </div> -->
+  <div>
+  <div class="s-layout">
+    <!-- Sidebar -->
+    <div class="s-layout__sidebar">
+      <a class="s-sidebar__trigger" href="#0">
+        <i class="fa fa-bars"></i>
+      </a>
+  
+      <nav class="s-sidebar__nav">
+        <ul>
+          <li>
+            <a class="s-sidebar__nav-link" href="#0">
+              <i class="fa fa-home"></i><em>Airframe</em>
+            </a>
+          </li>
+          <li>
+            <a class="s-sidebar__nav-link" href="#0">
+              <i class="fa fa-user"></i><em>Avionics</em>
+            </a>
+          </li>
+          <li>
+            <a class="s-sidebar__nav-link" href="#0">
+              <i class="fa fa-camera"></i><em>Engine</em>
+            </a>
+          </li>
+          <li>
+            <a class="s-sidebar__nav-link" href="#0">
+              <i class="fa fa-camera"></i><em>Interior</em>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
 
   <!-- Main Content -->
   <main class="content">
     <div class="container">
-      <header class="content-header">
-        <h2 class="section-heading">Add Inventory Item</h2>
-      </header>
-      <section class="content-section">
-        <form class="inventory-form">
-          <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div class="form-group">
-            <label for="category">Category:</label>
-            <select id="category" name="category" required>
-              <option value="Airframe">Airframe</option>
-              <option value="Avionics">Avionics</option>
-              <option value="Engine">Engine</option>
-              <option value="Interior">Interior</option>
-            </select>
-          </div>
-          <button type="submit">Add Inventory Item</button>
-        </form>
-      </section>
+      <h2>Add New Inventory Item</h2>
+      <form class="inventory-form">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="category">Category:</label>
+          <select id="category" name="category" required>
+            <option value="Airframe">Airframe</option>
+            <option value="Avionics">Avionics</option>
+            <option value="Engine">Engine</option>
+            <option value="Interior">Interior</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" name="quantity" required>
+        </div>
+        <div class="form-group">
+          <label for="unitPrice">Unit Price:</label>
+          <input type="number" id="unitPrice" name="unitPrice" required>
+        </div>
+        <button type="submit">Add Inventory Item</button>
+      </form>
     </div>
   </main>
+  </div>
 
-  <script>
-    function toggleSidebar() {
-      var sidebar = document.getElementById("sidebar");
-      sidebar.classList.toggle("active");
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
