@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const { category } = require('../constants');
 
 /**
  * Compliance schema,
@@ -35,7 +35,7 @@ const InventoryItemSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    enum: ['Airframe', 'Avionics', 'Engine', 'Interior'],
+    enum: category,
     required: true
   },
   quantity: {
@@ -54,63 +54,6 @@ const InventoryItemSchema = new mongoose.Schema({
 });
 
 
-/**
- * Repairs schema
- */
-const RepairSchema = new mongoose.Schema({
-  // aircraft: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Aircraft',
-  //   required: true
-  // },
-  description: {
-    type: String,
-    required: true
-  },
-  category: {
-    type: String,
-    enum: ['Airframe', 'Avionics', 'Engine', 'Interior'],
-    required: true
-  },
-  compliance: {
-    type: Compliance
-  },
-  scheduledDate: {
-    type: Date,
-    required: true,
-    default: Date.now
-  },
-  status: {
-    type: String,
-    enum: ['In Progress', 'Completed', 'Delayed'],
-    default: 'In Progress'
-  },
-  assignedTechnician: {
-    type: Technician,
-    // required: true,
-    // default: "Open to all"
-  },
-  inventoryItems: [{
-    type: InventoryItem
-  }],
-  // inventoryItems: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: InventoryItem,
-  //   required: true,
-  //   default: "Spare"
-  // },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    required: true
-  },
-  durationRequired: {
-    type: Number,
-    required: true,
-    default: 1
-  }
-});
-
 
 /**
  * Technician schema
@@ -122,7 +65,7 @@ const TechnicianSchema = new mongoose.Schema({
   },
   specializations: [{
     type: String,
-    enum: ['Airframe', 'Avionics', 'Engine', 'Interior'],
+    enum: category,
     required: true
   }],
   experienceYears: {
@@ -136,4 +79,4 @@ const TechnicianSchema = new mongoose.Schema({
   }
 });
 
-module.exports = { ComplianceSchema, InventoryItemSchema, RepairSchema, TechnicianSchema };
+module.exports = { ComplianceSchema, InventoryItemSchema, TechnicianSchema };

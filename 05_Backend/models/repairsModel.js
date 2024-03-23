@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const InventoryItem = require('./inventoryScheme');
-const Technician = require('./technicianScheme');
-const Compliance = require('./complianceScheme');
+const { ComplianceSchema, TechnicianSchema, InventoryItemSchema } = require('./commons');
+const { category, status } = require('../constants');
 
 const RepairSchema = new mongoose.Schema({
   // aircraft: {
@@ -15,11 +14,11 @@ const RepairSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    enum: ['Airframe', 'Avionics', 'Engine', 'Interior'],
+    enum: category,
     required: true
   },
   compliance: {
-    type: Compliance
+    type: ComplianceSchema
   },
   scheduledDate: {
     type: Date,
@@ -28,16 +27,16 @@ const RepairSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['In Progress', 'Completed', 'Delayed'],
+    enum: status,
     default: 'In Progress'
   },
   assignedTechnician: {
-    type: Technician,
+    type: TechnicianSchema,
     // required: true,
     // default: "Open to all"
   },
   inventoryItems: [{
-    type: InventoryItem
+    type: InventoryItemSchema
   }],
   // inventoryItems: {
   //   type: mongoose.Schema.Types.ObjectId,
