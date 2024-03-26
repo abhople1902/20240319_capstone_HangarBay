@@ -1,0 +1,20 @@
+.main-content {
+  display: flex;
+  
+}
+
+.right {
+  width: 80%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
+@media (min-width: 42em) {
+  .right {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,9 @@
+.dash {
+  display: flex;
+  flex-direction: column;
+}
+
+.repairs-card {
+  max-width: 800px;
+  margin-bottom: 8px;
+}
