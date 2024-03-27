@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-repairsdash',
@@ -16,7 +18,7 @@ export class RepairsdashComponent implements OnInit {
   // cardSubtitle: string = '';
   repairData: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchRepairData();
@@ -38,4 +40,9 @@ export class RepairsdashComponent implements OnInit {
         }
       );
   }
+
+  navigateToCreateRepair() {
+    this.router.navigate(['/createrepairs']); // Adjust the route path accordingly
+  }
+
 }
