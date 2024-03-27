@@ -15,6 +15,11 @@ const ComplianceSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  category: {
+    type: String,
+    enum: category,
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now

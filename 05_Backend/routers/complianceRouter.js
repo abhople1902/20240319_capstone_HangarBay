@@ -12,8 +12,14 @@ const { ConnectionClosedEvent } = require('mongodb');
 /**
  * API for getting the compliance documents
  */
+router.post("/document", complianceController.getComplianceDocument);
 
-router.get("/document", complianceController.getComplianceDocument);
+
+/**
+ * API for getting the compliance documents
+ */
+router.get("/all", complianceController.getAllCompliances);
+
 
 // module.exports = router;
 module.exports = router
