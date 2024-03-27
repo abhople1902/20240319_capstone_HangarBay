@@ -1,0 +1,20 @@
+<!-- <form 
+[formGroup]="createRepairForm"
+autocomplete="off"
+method="post"
+> -->
+  <div [formGroup]="createRepairForm">
+    <label formControlName="category">Category:</label>
+    <select id="category" [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+      <option value="Airframe">Airframe</option>
+      <option value="Engine">Engine</option>
+      <option value="Avionics">Avionics</option>
+    </select>
+  </div>
+  <div>
+    <label formControlName="item">Item:</label>
+    <select id="item" [(ngModel)]="selectedItem">
+      <option *ngFor="let item of items" [ngValue]="item">{{ item }}</option>
+    </select>
+  </div>
+<!-- </form> -->
