@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const _ = require('lodash');
-const compliance = require('../models/complianceModel');
+const { complianceModel } = require('../models/index');
 
 const { validateInventoryItem } = require('../validators/itemvalidator');
 const { ConnectionClosedEvent } = require('mongodb');
@@ -35,11 +35,11 @@ const { ConnectionClosedEvent } = require('mongodb');
 
 
 async function getComplianceDocument(req, res){
-  const title = req.query.title;
-  console.log(title);
+  const category = req.query.category;
+  console.log(category);
 
   try {
-    let item = await compliance.find({ title: title })
+    let item = await complianceModel.find({ category: category })
 
     res.json(item);
 

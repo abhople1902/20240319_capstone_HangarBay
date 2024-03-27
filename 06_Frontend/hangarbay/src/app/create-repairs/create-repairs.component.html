@@ -3,7 +3,7 @@
 autocomplete="off"
 method="post"
 > -->
-  <div [formGroup]="createRepairForm">
+  <!-- <div [formGroup]="createRepairForm">
     <label formControlName="category">Category:</label>
     <select id="category" [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
       <option value="Airframe">Airframe</option>
@@ -16,5 +16,84 @@ method="post"
     <select id="item" [(ngModel)]="selectedItem">
       <option *ngFor="let item of items" [ngValue]="item">{{ item }}</option>
     </select>
-  </div>
+  </div> -->
 <!-- </form> -->
+
+
+
+<!-- <form (ngSubmit)="submitForm()" #repairForm="ngForm">
+  <mat-form-field>
+    <input matInput placeholder="Description" name="description" [(ngModel)]="formData.description" required>
+    <mat-error *ngIf="repairForm.controls['description'].invalid && repairForm.controls['description'].touched">
+      Description is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Category</mat-label>
+    <mat-select placeholder="Category" name="category" [(ngModel)]="formData.category" required>
+      <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="repairForm.controls['category'].invalid && repairForm.controls['category'].touched">
+      Category is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Scheduled Date" name="scheduledDate" [(ngModel)]="formData.scheduledDate" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="repairForm.controls['scheduledDate'].invalid && repairForm.controls['scheduledDate'].touched">
+      Scheduled Date is required
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="repairForm.invalid">Submit</button>
+</form> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<form (ngSubmit)="submitForm()" #repairForm="ngForm">
+  <mat-form-field>
+    <input matInput placeholder="Description" name="description" [(ngModel)]="formData['description']" required>
+    <mat-error *ngIf="repairForm.controls['description'].invalid && repairForm.controls['description'].touched">
+      Description is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Category</mat-label>  
+    <mat-select placeholder="Category" name="category" [(ngModel)]="formData['category']" required>
+      <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="repairForm.controls['category'].invalid && repairForm.controls['category'].touched">
+      Category is required
+    </mat-error>
+  </mat-form-field>
+
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Compliances" name="compliances" [(ngModel)]="selectedCompliances" disabled>
+      <mat-icon matSuffix (click)="fetchCompliances()">refresh</mat-icon>
+      <mat-error *ngIf="complianceFetchError">Failed to fetch compliances</mat-error>
+    </mat-form-field>
+    <div *ngIf="compliances">
+      <div *ngFor="let compliance of compliances">
+        <mat-checkbox [(ngModel)]="compliance.selected">{{ compliance.name }}</mat-checkbox>
+      </div>
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary" type="button" (click)="addCompliances()">Add Selected Compliances</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="repairForm.invalid">Submit</button>
+</form>
+
