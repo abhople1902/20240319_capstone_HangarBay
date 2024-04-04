@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const _ = require('lodash');
-const inventory = require('../models/inventoryScheme');
+// const inventory = require('../models/inventoryScheme');
 const repair = require('../models/repairsModel');
-const Technician = require('../models/technicianScheme');
+// const Technician = require('../models/technicianScheme');
 
-const { validateRepair } = require('../validators/repairvalidator');
-const { ConnectionClosedEvent } = require('mongodb');
+// const { validateRepair } = require('../validators/repairvalidator');
+// const { ConnectionClosedEvent } = require('mongodb');
 
 
 /**

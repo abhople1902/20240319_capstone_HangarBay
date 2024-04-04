@@ -1,0 +1,19 @@
+<div class="s-layout">
+  <!-- Sidebar -->
+  <div class="s-layout__sidebar">
+    <li *ngFor="let item of sideitems">
+      <a [routerLink]="[item.route]" class="s-sidebar__trigger" href="#0">
+        <i class="fa fa-bars"></i>
+      </a>
+    </li>
+
+    <nav class="s-sidebar__nav">
+      <ul>
+        <li *ngFor="let item of sideitems">
+          <a [routerLink]="[item.route]" class="s-sidebar__nav-link">
+            <i [class]="item.iconClass"></i><em>{{ item.label }}</em>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>

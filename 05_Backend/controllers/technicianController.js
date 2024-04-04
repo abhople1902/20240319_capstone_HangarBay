@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const _ = require('lodash');
-const technician = require('../models/technicianModel');
+const {technicianModel} = require('../models/index');
 
 const { ConnectionClosedEvent } = require('mongodb');
 
@@ -34,7 +34,7 @@ async function findTechnicianByCategory(req, res) {
   console.log(req.body);
 
   try {
-    let item = await technician.findOne({ specializations: special.specializations })
+    let item = await technicianModel.findOne({ specializations: special.specializations })
 
     res.json(item);
 

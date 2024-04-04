@@ -1,0 +1,66 @@
+<div class="main-content">
+
+  <div class="left">
+    <!-- <app-sidebar [sidebarItems]="[
+  { label: 'Back to all repairs', iconClass: 'fa-solid fa-plane', route: '/'},
+  { label: 'Compliances', iconClass: 'fa-solid fa-tv', route: '/regulations'}
+]"></app-sidebar> -->
+  </div>
+
+
+  <div class="right">
+    <div class="create-cause-page">
+      <div class="inside-content">
+        <div class="header">
+          <h1>Add Aircraft part</h1>
+        </div>
+
+        <div class="form-details">
+          <form [formGroup]="inventoryForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline">
+              <mat-label>Part Name</mat-label>
+              <input matInput formControlName="name" required>
+              <mat-error *ngIf="(inventoryForm.get('name')?.hasError('required') ?? false)">Part name is
+                required</mat-error>
+            </mat-form-field>
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Funds Required</mat-label>
+                <input matInput formControlName="fundsRequired" required>
+                <mat-error *ngIf="(inventoryForm.get('fundsRequired')?.hasError('required') ?? false)">Funds required is required</mat-error>
+                <mat-error *ngIf="(inventoryForm.get('fundsRequired')?.hasError('pattern') ?? false)">Invalid amount</mat-error>
+              </mat-form-field> -->
+
+            <mat-form-field appearance="outline">
+              <mat-label>Category</mat-label>
+              <mat-select formControlName="category" required>
+                <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="(inventoryForm.get('category')?.hasError('required') ?? false)">Category is
+                required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Quantity</mat-label>
+              <textarea matInput formControlName="quantity" required></textarea>
+              <mat-error *ngIf="(inventoryForm.get('quantity')?.hasError('required') ?? false)">Plaese specify
+                quantity</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Unit Price</mat-label>
+              <input matInput formControlName="unitPrice" required>
+              <mat-error *ngIf="(inventoryForm.get('unitPrice')?.hasError('required') ?? false)">Image URL is
+                required</mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="inventoryForm.invalid">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

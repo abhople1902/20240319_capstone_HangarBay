@@ -1,0 +1,50 @@
+/* section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+} */
+
+
+.inside-content{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.create-cause-page{
+  display: flex;
+  justify-content: center;
+  margin:30px 0px;
+}
+
+.form-details form{
+  margin: 50px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
