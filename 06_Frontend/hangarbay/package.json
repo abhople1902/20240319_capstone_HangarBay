@@ -10,6 +10,7 @@
     "serve:ssr:hangarbay": "node dist/hangarbay/server/server.mjs"
   },
   "private": true,
+  "standalone": true,
   "dependencies": {
     "@angular/animations": "^17.2.0",
     "@angular/cdk": "^17.3.1",

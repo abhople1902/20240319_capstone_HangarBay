@@ -1,67 +1,4 @@
-<!-- <form 
-[formGroup]="createRepairForm"
-autocomplete="off"
-method="post"
-> -->
-  <!-- <div [formGroup]="createRepairForm">
-    <label formControlName="category">Category:</label>
-    <select id="category" [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
-      <option value="Airframe">Airframe</option>
-      <option value="Engine">Engine</option>
-      <option value="Avionics">Avionics</option>
-    </select>
-  </div>
-  <div>
-    <label formControlName="item">Item:</label>
-    <select id="item" [(ngModel)]="selectedItem">
-      <option *ngFor="let item of items" [ngValue]="item">{{ item }}</option>
-    </select>
-  </div> -->
-<!-- </form> -->
-
-
-
-<!-- <form (ngSubmit)="submitForm()" #repairForm="ngForm">
-  <mat-form-field>
-    <input matInput placeholder="Description" name="description" [(ngModel)]="formData.description" required>
-    <mat-error *ngIf="repairForm.controls['description'].invalid && repairForm.controls['description'].touched">
-      Description is required
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Category</mat-label>
-    <mat-select placeholder="Category" name="category" [(ngModel)]="formData.category" required>
-      <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
-    </mat-select>
-    <mat-error *ngIf="repairForm.controls['category'].invalid && repairForm.controls['category'].touched">
-      Category is required
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Scheduled Date" name="scheduledDate" [(ngModel)]="formData.scheduledDate" required>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-    <mat-error *ngIf="repairForm.controls['scheduledDate'].invalid && repairForm.controls['scheduledDate'].touched">
-      Scheduled Date is required
-    </mat-error>
-  </mat-form-field>
-
-  <button mat-raised-button color="primary" type="submit" [disabled]="repairForm.invalid">Submit</button>
-</form> -->
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- 
 <form (ngSubmit)="submitForm()" #repairForm="ngForm">
   <mat-form-field>
     <input matInput placeholder="Description" name="description" [(ngModel)]="formData['description']" required>
@@ -82,18 +19,67 @@ method="post"
 
   <div>
     <mat-form-field>
-      <input matInput placeholder="Compliances" name="compliances" [(ngModel)]="selectedCompliances" disabled>
-      <mat-icon matSuffix (click)="fetchCompliances()">refresh</mat-icon>
-      <mat-error *ngIf="complianceFetchError">Failed to fetch compliances</mat-error>
+      <input matInput placeholder="Compliances" name="compliances" [(ngModel)]="selectedTechnicians" disabled>
+      <mat-icon matSuffix (click)="fetchTechnicians()">refresh</mat-icon>
+      <mat-error *ngIf="technicianFetchError">Failed to fetch compliances</mat-error>
     </mat-form-field>
-    <div *ngIf="compliances">
-      <div *ngFor="let compliance of compliances">
-        <mat-checkbox [(ngModel)]="compliance.selected">{{ compliance.name }}</mat-checkbox>
+    <div *ngIf="technicians">
+      <div *ngFor="let technician of technicians">
+        <mat-checkbox [(ngModel)]="technician.selected">{{ technician.name }}</mat-checkbox>
       </div>
     </div>
   </div>
 
   <button mat-raised-button color="primary" type="button" (click)="addCompliances()">Add Selected Compliances</button>
   <button mat-raised-button color="primary" type="submit" [disabled]="repairForm.invalid">Submit</button>
-</form>
+</form> -->
 
+
+
+
+<div class="create-cause-page">
+  <div class="inside-content">
+      <div class="header">
+          <h1>Create Cause</h1>
+      </div>
+      
+      <div class="form-details">
+          <form [formGroup]="causeForm" (ngSubmit)="onSubmit()">
+              <mat-form-field appearance="outline">
+                <mat-label>Cause Name</mat-label>
+                <input matInput formControlName="causeName" required>
+                <mat-error *ngIf="(causeForm.get('causeName')?.hasError('required') ?? false)">Cause name is required</mat-error>
+              </mat-form-field>
+            
+              <mat-form-field appearance="outline">
+                <mat-label>Funds Required</mat-label>
+                <input matInput formControlName="fundsRequired" required>
+                <mat-error *ngIf="(causeForm.get('fundsRequired')?.hasError('required') ?? false)">Funds required is required</mat-error>
+                <mat-error *ngIf="(causeForm.get('fundsRequired')?.hasError('pattern') ?? false)">Invalid amount</mat-error>
+              </mat-form-field>
+            
+              <!-- <mat-form-field appearance="outline">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category" required>
+                  <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="(causeForm.get('category')?.hasError('required') ?? false)">Category is required</mat-error>
+              </mat-form-field> -->
+            
+              <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description" required></textarea>
+                <mat-error *ngIf="(causeForm.get('description')?.hasError('required') ?? false)">Description is required</mat-error>
+              </mat-form-field>
+          
+              <mat-form-field appearance="outline">
+                  <mat-label>Image URL</mat-label>
+                  <input matInput formControlName="imageUrl" required>
+                  <mat-error *ngIf="(causeForm.get('imageUrl')?.hasError('required') ?? false)">Image URL is required</mat-error>
+                </mat-form-field>
+            
+              <button mat-raised-button color="primary" type="submit" [disabled]="causeForm.invalid">Submit</button>
+            </form>
+      </div>
+  </div>
+</div>

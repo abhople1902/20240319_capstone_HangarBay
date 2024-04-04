@@ -8,6 +8,10 @@ const RepairSchema = new mongoose.Schema({
   //   ref: 'Aircraft',
   //   required: true
   // },
+  name: {
+    type: String,
+    required: true
+  },
   description: {
     type: String,
     required: true
@@ -18,7 +22,9 @@ const RepairSchema = new mongoose.Schema({
     required: true
   },
   compliance: {
-    type: ComplianceSchema
+    type: mongoose.Schema.ObjectId,
+    ref: 'Compliance',
+    required: true
   },
   scheduledDate: {
     type: Date,
@@ -31,9 +37,9 @@ const RepairSchema = new mongoose.Schema({
     default: 'In Progress'
   },
   assignedTechnician: {
-    type: TechnicianSchema,
-    // required: true,
-    // default: "Open to all"
+    type: mongoose.Schema.ObjectId,
+    ref: 'Technician',
+    required: true,
   },
   inventoryItems: [{
     type: InventoryItemSchema

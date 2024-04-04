@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const _ = require('lodash');
-const inventory = require('../models/inventoryModel');
+const {inventoryModel} = require('../models/index');
 
 const { validateInventoryItem } = require('../validators/itemvalidator');
 const { ConnectionClosedEvent } = require('mongodb');
@@ -40,7 +40,7 @@ async function getInventory(req, res) {
 
   try {
     var item = new Array();
-    let items = await inventory.find({ category: category })
+    let items = await inventoryModel.find({ category: category })
     items.forEach((x) => {
       item.push(x);
     })
@@ -103,7 +103,7 @@ async function getInventory(req, res) {
 async function addInventoryItem(req, res) {
   const inputObject = req.body;
   console.log(inputObject);
-  const { name, category, quantity, unitPrice, createdAt } = req.body;
+  const { name } = req.body;
 
   let validationErrors = validateInventoryItem(inputObject);
 
@@ -111,19 +111,21 @@ async function addInventoryItem(req, res) {
     console.log(validationErrors);
   } else {
     try {
-      const existingItem = await inventory.findOne({ category: category });
+      const existingItem = await inventoryModel.findOne({ name: name });
       if (existingItem) {
-        return res.status(400).json({ message: 'Item already exists. PLease update the stock' });
+        return res.status(400).json({ message: 'Item already exists. Please update the stock' });
       } else {
-        const newItem = new inventory({
-          name,
-          category,
-          quantity,
-          unitPrice,
-          createdAt
-        })
+        const itemDetails = {
+          name: req.body.name,
+          category: req.body.category,
+          quantity: req.body.quantity,
+          unitPrice: req.body.unitPrice
+        };
+        console.log(itemDetails);
+        const newItem = new inventoryModel(itemDetails)
 
         await newItem.save();
+        console.log(newItem)
         res.status(201).json({ message: 'Part added successfully' });
       }
 
