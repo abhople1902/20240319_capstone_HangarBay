@@ -3,9 +3,11 @@ import { CreateRepairsComponent } from '../app/create-repairs/create-repairs.com
 import { CreateInventoryComponent } from './pages/create-inventory/create-inventory.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { SigninComponent } from './pages/signin/signin.component';
 
 export const routes: Routes = [
-  { path: '', component: DashboardComponent },
+  { path: 'dash', component: DashboardComponent },
   { path: 'createrepairs', component: CreateRepairsComponent },
-  { path: 'addinventory', component: CreateInventoryComponent }
+  { path: 'addinventory', component: CreateInventoryComponent },
+  { path: '', component: SigninComponent }
 ];

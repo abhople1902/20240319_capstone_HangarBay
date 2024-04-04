@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const inventoryRoute = require('./routers/inventoryRouter');
 const complianceRoute = require('./routers/complianceRouter');
 const repairRoute = require('./routers/repairsRouter');
+const authRoute = require ('./routers/authRouter');
+const cors = require('cors')
 const technicianRoute = require('./routers/technicianRouter');
 
 const { JWT_SECRET } = require('../05_Backend/config');
@@ -13,6 +15,8 @@ const MONGODB_URI = 'mongodb+srv://Ayush:2BXNWx4qaZkr3C5y@cluster0.ijs1ymf.mongo
 
 
 app.use(express.json());
+app.use(cors);
+app.use('/auth', authRoute);
 app.use('/inventory', inventoryRoute);
 app.use('/compliance', complianceRoute);
 app.use('/repairs', repairRoute);

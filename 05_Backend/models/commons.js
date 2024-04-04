@@ -68,6 +68,11 @@ const TechnicianSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  role: {
+    type: String,
+    enum: ["operator","admin"],
+    default: "operator"
+  },
   specializations: [{
     type: String,
     enum: category,

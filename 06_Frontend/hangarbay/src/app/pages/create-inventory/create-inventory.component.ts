@@ -55,6 +55,8 @@ export class CreateInventoryComponent {
         quantity:this.inventoryForm.value.quantity,
         unitPrice:this.inventoryForm.value.unitPrice,
       };
+
+      console.log(itemData)
       this.createItemService.createItem(itemData).subscribe(
         (response) => {
           console.log('Item created successfully:', response);
@@ -64,7 +66,7 @@ export class CreateInventoryComponent {
           
         },
         (error) => {
-          console.error('Error creating item:', error);
+          console.error(error);
           // Add any additional logic for error handling
         }
       );

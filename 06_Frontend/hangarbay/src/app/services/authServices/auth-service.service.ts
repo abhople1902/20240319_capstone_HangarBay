@@ -21,4 +21,3 @@ export class AuthServiceService {
     this.loggedIn.next(false);
   }
 }
-
