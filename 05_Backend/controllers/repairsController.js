@@ -1,8 +1,9 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const _ = require('lodash');
+import _ from 'lodash';
 // const inventory = require('../models/inventoryScheme');
-const repair = require('../models/repairsModel');
+
+import repair from '../models/repairsModel.js';
 // const Technician = require('../models/technicianScheme');
 
 // const { validateRepair } = require('../validators/repairvalidator');
@@ -200,5 +201,9 @@ async function updateRepair(req, res){
   }
 }
 
-// module.exports = router
-module.exports = { createRepairs, getRepairs, updateRepair }
+
+export { 
+  createRepairs,
+  getRepairs,
+  updateRepair 
+}

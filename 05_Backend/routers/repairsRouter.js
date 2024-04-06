@@ -1,10 +1,10 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const _ = require('lodash');
+import _ from 'lodash';
 
 // const inventory = require('../models/inventoryScheme');
 // const repair = require('../models/repairsModel');
-const repairsController = require('../controllers/repairsController');
+import {createRepairs, getRepairs, updateRepair} from '../controllers/repairsController.js';
 // const Technician = require('../models/technicianScheme');
 
 // const { validateRepair } = require('../validators/repairvalidator');
@@ -14,21 +14,20 @@ const repairsController = require('../controllers/repairsController');
 /**
  * API for creating repairs
  */
-router.post("/create", repairsController.createRepairs);
+router.post("/create", createRepairs);
 
 
 
 /**
  * API to get all repairs
  */
-router.get("/all", repairsController.getRepairs);
+router.get("/all", getRepairs);
 
 
 
 /**
  * API to update the status of a repair
  */
-router.put("/status/:id", repairsController.updateRepair);
+router.put("/status/:id", updateRepair);
 
-
-module.exports = router
+export default router;

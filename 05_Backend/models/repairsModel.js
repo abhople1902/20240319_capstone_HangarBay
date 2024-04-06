@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
-const { ComplianceSchema, TechnicianSchema, InventoryItemSchema } = require('./commons');
-const { category, status } = require('../constants');
+import mongoose from 'mongoose';
+
+import { ComplianceSchema, TechnicianSchema, InventoryItemSchema } from './commons.js';
+import { category, status } from '../constants.js';
 
 const RepairSchema = new mongoose.Schema({
   // aircraft: {
@@ -80,5 +81,4 @@ const RepairSchema = new mongoose.Schema({
 
 
 const Repair = mongoose.model('Repair', RepairSchema);
-
-module.exports = Repair;
+export default Repair;
