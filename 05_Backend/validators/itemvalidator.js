@@ -25,6 +25,6 @@ const validateInventoryItem = (item) => {
   return errors;
 };
 
-module.exports = {
-  validateInventoryItem,
+export default {
+  validateInventoryItem
 };

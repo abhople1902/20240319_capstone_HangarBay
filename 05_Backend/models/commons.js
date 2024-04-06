@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { category } = require('../constants');
+import mongoose from 'mongoose';
+import { category } from '../constants.js';
 
 /**
  * Compliance schema,
@@ -64,7 +64,12 @@ const InventoryItemSchema = new mongoose.Schema({
  * Technician schema
  */
 const TechnicianSchema = new mongoose.Schema({
-  name: {
+  username: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  password: {
     type: String,
     required: true
   },
@@ -89,4 +94,9 @@ const TechnicianSchema = new mongoose.Schema({
   }
 });
 
-module.exports = { ComplianceSchema, InventoryItemSchema, TechnicianSchema };
+
+export { 
+  ComplianceSchema,
+  InventoryItemSchema,
+  TechnicianSchema
+ }

@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-const { TechnicianSchema } = require('./commons')
+import mongoose from 'mongoose';
+import { TechnicianSchema } from './commons.js';
 
 
 const Technician = mongoose.model('Technician', TechnicianSchema);
-
-module.exports = Technician;
+export default Technician;

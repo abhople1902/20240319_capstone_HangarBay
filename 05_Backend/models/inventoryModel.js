@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-const {InventoryItemSchema} = require('./commons')
+import mongoose from 'mongoose';
+import { InventoryItemSchema } from './commons.js';
 
 
 const InventoryItem = mongoose.model('InventoryItem', InventoryItemSchema);
-
-module.exports = InventoryItem;
+export default InventoryItem

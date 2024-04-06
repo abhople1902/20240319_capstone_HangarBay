@@ -1,0 +1,42 @@
+<form>
+  <div class="container" style="top: 450px;">
+    <h1>Sign Up</h1>
+    <p>Please fill in this form to create an account.</p>
+
+    <label for="username"><b>Username</b></label>
+    <input type="text" name="username" [(ngModel)]="username" (blur)="validateUsername()" (focus)="hideUsernameError()"
+      placeholder="Enter Your Username" required>
+
+    <span class="error usernameError" [ngStyle]="{'display': usernameErrorVisibility ? '' : 'none'}">{{usernameErrorMessage}}</span>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" name="email" (blur)="validateEmail()" (focus)="hideEmailError()" [(ngModel)]="email"
+      placeholder="Enter Your Email" required>
+
+    <span class="error emailError" [ngStyle]="{'display': emailErrorVisibility ? '' : 'none'}">{{emailErrorMessage}}</span>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" name="password" (change)="validatePassword()" (focus)="hidePasswordError()"
+      [(ngModel)]="password" placeholder="Enter Your Password" required>
+
+    <span class="error passwordError" [ngStyle]="{'display': passwordErrorVisibility ? '' : 'none'}">{{passwordErrorMessage}}</span>
+
+    <label for="experience"><b>Experience in Years</b></label><br>
+    <input type="number" name="experienceYears" [(ngModel)]="experienceYears" placeholder="Enter Your Experience in Years"
+      required>
+
+    <label for="specializations"><b>Specializations</b></label><br>
+    <input type="text" name="specializations" [(ngModel)]="specializations" placeholder="Enter Your Specializations">
+
+    <label for="role"><b>Role</b></label><br>
+    <input type="text" name="role" [(ngModel)]="role" placeholder="What is your role?">
+
+    <br>
+    <span class="already-have-an">Already have an account?</span>&nbsp;
+    <span class="login2" style="font-size: 2em;"><a href="signin" (click)="navToLogin()" style="color:blue;">Login</a></span>
+
+    <div class="clearfix">
+      <button type="submit" class="btn" [disabled]="submitDisabled" (click)="storeUserCred()">Sign Up</button>
+    </div>
+  </div>
+</form>

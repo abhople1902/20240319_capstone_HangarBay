@@ -4,10 +4,14 @@ import { CreateInventoryComponent } from './pages/create-inventory/create-invent
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SigninComponent } from './pages/signin/signin.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { FrontComponent } from './pages/front/front.component';
 
 export const routes: Routes = [
+  { path: '', component: FrontComponent },
   { path: 'dash', component: DashboardComponent },
-  { path: 'createrepairs', component: CreateRepairsComponent },
+  // { path: 'createrepairs', component: CreateRepairsComponent },
   { path: 'addinventory', component: CreateInventoryComponent },
-  { path: '', component: SigninComponent }
+  { path: 'signin', component: SigninComponent },
+  { path: 'signup', component: SignupComponent }
 ];

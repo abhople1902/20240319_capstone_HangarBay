@@ -15,8 +15,13 @@
 
 
 
-require('dotenv').config();
+// require('dotenv').config();
+import 'dotenv/config';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-module.exports = { JWT_SECRET };
+const config = {
+  emailUser:'atharvanhsm@gmail.com',
+  emailPassword:'amqw aoey kolu xspf'
+}
+export { JWT_SECRET, config };
