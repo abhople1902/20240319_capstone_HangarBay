@@ -187,8 +187,8 @@ export class SigninComponent {
 
             this.authService.logIn();
             // Navigate to the home page if the token is present
-            if (role == 'operator') this.router.navigate(['/dash']);
-            else if(role=='admin')this.router.navigate(['/dash'])
+            if (role == 'operator') this.router.navigate(['/opsdash']);
+            else if(role=='admin')this.router.navigate(['/dash']);
             else {
               this.router.navigate(['/']);
             }

@@ -4,6 +4,7 @@ import { CreateRepairsComponent } from './create-repairs/create-repairs.componen
 import { CreateInventoryComponent } from './pages/create-inventory/create-inventory.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { OpsdashComponent } from './pages/opsdash/opsdash.component';
 // import { SigninComponent } from './pages/signin/signin.component';
 import { RepairsdashComponent } from './repairsdash/repairsdash.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,7 +13,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CreateRepairsComponent, CreateInventoryComponent, DashboardComponent, CommonModule, HttpClientModule],
+  imports: [RouterOutlet, CreateRepairsComponent, CreateInventoryComponent, DashboardComponent, OpsdashComponent, CommonModule, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

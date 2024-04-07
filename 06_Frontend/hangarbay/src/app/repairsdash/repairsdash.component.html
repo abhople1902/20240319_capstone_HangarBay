@@ -17,7 +17,11 @@
 
 
 <div class="dash">
-  <h2>Repairs</h2>
+  <h1>Hello {{intro}}</h1>
+  <h2>{{position}} logged in</h2>
+  <hr>
+
+  <h3>All Repairs</h3>
   <br>
   <div *ngFor="let repair of repairData">
     <mat-card class="repairs-card">
@@ -33,5 +37,5 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <button mat-raised-button color="primary" (click)="navigateToCreateRepair()">Create Repair</button>
+  <button mat-raised-button color="primary" *ngIf="position === 'Admin'" (click)="navigateToCreateRepair()">Create Repair</button>
 </div>
