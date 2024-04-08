@@ -9,11 +9,12 @@ import { OpsdashComponent } from './pages/opsdash/opsdash.component';
 import { RepairsdashComponent } from './repairsdash/repairsdash.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CreateRepairsComponent, CreateInventoryComponent, DashboardComponent, OpsdashComponent, CommonModule, HttpClientModule],
+  imports: [RouterOutlet, CreateRepairsComponent, CreateInventoryComponent, DashboardComponent, OpsdashComponent, CommonModule, HttpClientModule, MatInputModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
