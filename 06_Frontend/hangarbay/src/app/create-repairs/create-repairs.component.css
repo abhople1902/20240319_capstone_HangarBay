@@ -1,42 +1,9 @@
-/* section {
-  display: table;
-}
-
-.example-label {
-  display: table-cell;
-  font-size: 14px;
-  margin-left: 8px;
-  min-width: 120px;
-}
-
-.example-button-row {
-  display: table-cell;
-  max-width: 600px;
-}
-
-.example-button-row .mat-mdc-button-base {
-  margin: 8px 8px 8px 0;
-}
-
-.example-flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.example-button-container {
-  display: flex;
-  justify-content: center;
-  width: 120px;
-} */
-
-
 .inside-content{
   width: 50%;
   display: flex;
   flex-direction: column;
 }
-.create-cause-page{
+.create-repairs-page{
   display: flex;
   justify-content: center;
   margin:30px 0px;
@@ -48,3 +15,13 @@
   flex-direction: column;
 }
 
+.right-section {
+  width: 300px; /* Adjust width as needed */
+  height: 100%; /* Adjust height as needed */
+  background-color: #f0f0f0; /* Adjust background color as needed */
+  position: absolute;
+  top: 0;
+  right: -300px; /* Initially hide the section */
+  transition: right 0.5s ease; /* Smooth transition */
+  overflow: hidden;
+}

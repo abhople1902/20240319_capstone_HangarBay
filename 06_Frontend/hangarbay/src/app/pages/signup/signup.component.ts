@@ -106,7 +106,7 @@ export class SignupComponent {
       email: this.email,
       role: this.role,
       experienceYears: this.experienceYears,
-      specializations: this.specializations.split(',') // Splitting the string to get individual specializations
+      specializations: this.specializations // Splitting the string to get individual specializations
     };
 
     this.http.post('http://localhost:3000/auth/techsignup', technicianData).subscribe({

@@ -1,10 +1,10 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const _ = require('lodash');
-const { complianceModel } = require('../models/index');
+import _ from 'lodash';
+import { Compliance } from '../models/complianceModel.js';
 
-const { validateInventoryItem } = require('../validators/itemvalidator');
-const { ConnectionClosedEvent } = require('mongodb');
+// const { validateInventoryItem } = require('../validators/itemvalidator');
+// const { ConnectionClosedEvent } = require('mongodb');
 
 
 /**
@@ -39,7 +39,7 @@ async function getComplianceDocument(req, res){
   console.log(category);
 
   try {
-    let item = await complianceModel.find({ category: category })
+    let item = await Compliance.find({ category: category })
 
     res.json(item);
 
@@ -75,5 +75,7 @@ async function getAllCompliances(req, res){
 
 
 
-// module.exports = router;
-module.exports = { getComplianceDocument, getAllCompliances }
+export {
+  getAllCompliances,
+  getComplianceDocument
+}

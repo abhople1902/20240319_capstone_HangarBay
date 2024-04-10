@@ -4,13 +4,13 @@
     <p>Please fill in this form to create an account.</p>
 
     <label for="username"><b>Username</b></label>
-    <input type="text" name="username" [(ngModel)]="username" (blur)="validateUsername()" (focus)="hideUsernameError()"
+    <input id="usernamefield" type="text" name="username" [(ngModel)]="username" (blur)="validateUsername()" (focus)="hideUsernameError()"
       placeholder="Enter Your Username" required>
 
     <span class="error usernameError" [ngStyle]="{'display': usernameErrorVisibility ? '' : 'none'}">{{usernameErrorMessage}}</span>
 
     <label for="email"><b>Email</b></label>
-    <input type="text" name="email" (blur)="validateEmail()" (focus)="hideEmailError()" [(ngModel)]="email"
+    <input id="emailfield" type="text" name="email" (blur)="validateEmail()" (focus)="hideEmailError()" [(ngModel)]="email"
       placeholder="Enter Your Email" required>
 
     <span class="error emailError" [ngStyle]="{'display': emailErrorVisibility ? '' : 'none'}">{{emailErrorMessage}}</span>
