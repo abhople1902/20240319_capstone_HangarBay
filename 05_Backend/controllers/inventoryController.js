@@ -1,10 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const _ = require('lodash');
-const {inventoryModel} = require('../models/index');
+import _ from 'lodash';
 
-const { validateInventoryItem } = require('../validators/itemvalidator');
-const { ConnectionClosedEvent } = require('mongodb');
+import InventoryItem from '../models/inventoryModel.js';
+
+// import validateInventoryItem from '../validators/itemvalidator.js';
+// const { ConnectionClosedEvent } = require('mongodb');
 
 
 
@@ -40,14 +41,14 @@ async function getInventory(req, res) {
 
   try {
     var item = new Array();
-    let items = await inventoryModel.find({ category: category })
-    items.forEach((x) => {
-      item.push(x);
-    })
+    let items = await InventoryItem.find({ category: category })
+    // items.forEach((x) => {
+    //   item.push(x);
+    // })
 
-    res.json(item);
+    res.json(items);
 
-    if (!item) {
+    if (!items) {
       return res.status(401).json({ message: 'Invalid id' });
     }
 
@@ -102,16 +103,16 @@ async function getInventory(req, res) {
 
 async function addInventoryItem(req, res) {
   const inputObject = req.body;
-  console.log(inputObject);
+  // console.log(inputObject);
   const { name } = req.body;
 
-  let validationErrors = validateInventoryItem(inputObject);
+  // let validationErrors = validateInventoryItem(inputObject);
 
-  if (!(_.isEmpty(validationErrors))) {
-    console.log(validationErrors);
-  } else {
+  // if (!(_.isEmpty(validationErrors))) {
+  //   console.log(validationErrors);
+  // } else {
     try {
-      const existingItem = await inventoryModel.findOne({ name: name });
+      const existingItem = await InventoryItem.findOne({ name: name });
       if (existingItem) {
         return res.status(400).json({ message: 'Item already exists. Please update the stock' });
       } else {
@@ -121,29 +122,32 @@ async function addInventoryItem(req, res) {
           quantity: req.body.quantity,
           unitPrice: req.body.unitPrice
         };
-        console.log(itemDetails);
-        const newItem = new inventoryModel(itemDetails)
+        // console.log(itemDetails);
+        const newItem = new InventoryItem(itemDetails)
 
         await newItem.save();
-        console.log(newItem)
-        res.status(201).json({ message: 'Part added successfully' });
+        // console.log(newItem)
+        res.status(201).json({ message: 'Part added successfully', newItem });
       }
 
     } catch (error) {
       console.error(error);
       res.status(500).json({ messgae: 'Internal Server Error' });
     }
-  }
+  // }
 }
 
 
 
 
 // Default route for handling undefined routes
-router.use((req, res) => {
-  res.status(404).send('<h1>404 Page Not Found</h1>');
-});
+// router.use((req, res) => {
+//   res.status(404).send('<h1>404 Page Not Found</h1>');
+// });
 
 
-// module.exports = router;
-module.exports = { getInventory, addInventoryItem }
+
+export { 
+  getInventory, 
+  addInventoryItem 
+}

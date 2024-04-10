@@ -1,9 +1,13 @@
-.dash {
-  display: flex;
-  flex-direction: column;
+.dash h1, .dash h2, .dash h3 {
+  text-align: center;
+  font-family: Arial, sans-serif; /* Change the font family as needed */
+  font-weight: 600;
 }
 
 .repairs-card {
-  max-width: 800px;
-  margin-bottom: 8px;
+  width: 1000px;
+  text-align: center;
+  margin-left: 200px; /* Center horizontally */
+  margin-right: auto;
+  margin-top: 50px;
 }

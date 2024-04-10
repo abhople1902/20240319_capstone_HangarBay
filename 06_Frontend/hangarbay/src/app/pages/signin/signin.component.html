@@ -4,14 +4,14 @@
     <p>Please fill in this form to Login to your account.</p>
 
     <label for="email"><b>Email</b></label>
-    <input type="text" name="email" [(ngModel)]="email" placeholder="Example@gmail.com" (blur)="handleEmailBlur($event)"
+    <input id="emailfieldsignin" type="text" name="email" [(ngModel)]="email" placeholder="Example@gmail.com" (blur)="handleEmailBlur($event)"
       (onchange)="handelOnchange($event)" (focus)="onEmailFocus()">
     <span [ngStyle]="{'visibility':emailErrorVisible?'':'hidden'}" class="error_msg">{{emailError[0] &&
       emailError[0].errorMsg}}</span>
 
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" [(ngModel)]="password"
+    <input id="passwordfieldsignin" type="password" placeholder="Enter Password" name="psw" [(ngModel)]="password"
       (blur)="handlePasswordBlur($event)" (focus)="onPasswordFocus()" (input)="handelPasswordChange($event)"
       required="">
     <span [ngStyle]="{'visibility':passwordErrorVisible?'':'hidden'}"
@@ -25,8 +25,8 @@
 
 
     <div class="clearfix">
-      <button type="submit" class="btn" [disabled]="submitDisabled" (mouseenter)="handelOnmouseenter()"
-        (click)="fetchjwt()">Sign Up</button>
+      <button id="signinbutton" type="submit" class="btn" [disabled]="submitDisabled" (mouseenter)="handelOnmouseenter()"
+        (click)="fetchjwt()">Sign In</button>
     </div>
   </div>
 </form>

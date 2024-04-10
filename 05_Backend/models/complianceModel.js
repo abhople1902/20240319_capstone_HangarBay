@@ -1,7 +1,9 @@
-const mongoose = require('mongoose');
-const { ComplianceSchema } = require('./commons')
+import mongoose from 'mongoose';
+import { ComplianceSchema } from './commons.js';
 
 
 const Compliance = mongoose.model('Compliance', ComplianceSchema);
 
-module.exports = Compliance;
+export {
+  Compliance
+}

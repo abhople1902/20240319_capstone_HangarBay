@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
-const { ComplianceSchema, TechnicianSchema, InventoryItemSchema } = require('./commons');
-const { category, status } = require('../constants');
+import mongoose from 'mongoose';
+
+import { ComplianceSchema, TechnicianSchema, InventoryItemSchema } from './commons.js';
+import { category, status } from '../constants.js';
 
 const RepairSchema = new mongoose.Schema({
   // aircraft: {
@@ -22,8 +23,7 @@ const RepairSchema = new mongoose.Schema({
     required: true
   },
   compliance: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Compliance',
+    type: String,
     required: true
   },
   scheduledDate: {
@@ -37,23 +37,16 @@ const RepairSchema = new mongoose.Schema({
     default: 'In Progress'
   },
   assignedTechnician: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Technician',
-    required: true,
+    type: String,
+    required: true
   },
-  inventoryItems: [{
-    type: InventoryItemSchema
-  }],
-  // inventoryItems: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: InventoryItem,
-  //   required: true,
-  //   default: "Spare"
-  // },
+  inventoryItems: {
+    type: String,
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now,
-    required: true
   },
   durationRequired: {
     type: Number,
@@ -80,5 +73,4 @@ const RepairSchema = new mongoose.Schema({
 
 
 const Repair = mongoose.model('Repair', RepairSchema);
-
-module.exports = Repair;
+export default Repair;

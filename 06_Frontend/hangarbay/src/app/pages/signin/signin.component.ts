@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthServiceService } from '../../services/authServices/auth-service.service';
+import { AuthService } from '../../services/authservice/auth.service';
 import { timer, Subscription } from 'rxjs';
 
 @Component({
@@ -23,7 +23,7 @@ export class SigninComponent {
     private route: ActivatedRoute,
     private http: HttpClient,
     private router: Router,
-    private authService: AuthServiceService
+    private authService: AuthService
   ) {}
 
   /** visibility of email
@@ -158,7 +158,7 @@ export class SigninComponent {
     }
   }
   navigateToForgotPassword() {
-    this.router.navigate(['/forgotpassword']);
+    // this.router.navigate(['/forgotpassword']);
   }
   ngOnInit(): void {}
 
@@ -170,22 +170,25 @@ export class SigninComponent {
     console.log(loginData);
 
     if (this.email && this.password) {
-      this.http.post('http://localhost:3000/auth/techlogin', loginData).subscribe({
+      this.http.post('http://localhost:3000/auth/techsignin', loginData).subscribe({
         next: (response: any) => {
-          console.log('Signin successful', response);
+          console.log('Signin successful:  ', response);
           const token = response.token;
           const role = response.role;
-          const donarId = response.donarId;
+          const techId = response.techId;
+          const username = response.username;
 
           if (token && role) {
             console.log(token);
             localStorage.setItem('userToken', token);
             localStorage.setItem('role', role);
+            localStorage.setItem('techId', techId);
+            localStorage.setItem('username', username);
 
             this.authService.logIn();
             // Navigate to the home page if the token is present
-            if (role == 'operator') this.router.navigate(['/dash']);
-            else if(role=='admin')this.router.navigate(['/dash'])
+            if (role == 'operator') this.router.navigate(['/opsdash']);
+            else if(role=='admin')this.router.navigate(['/dash']);
             else {
               this.router.navigate(['/']);
             }

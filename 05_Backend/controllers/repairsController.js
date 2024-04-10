@@ -1,8 +1,9 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const _ = require('lodash');
+import _ from 'lodash';
 // const inventory = require('../models/inventoryScheme');
-const repair = require('../models/repairsModel');
+
+import Repair from '../models/repairsModel.js';
 // const Technician = require('../models/technicianScheme');
 
 // const { validateRepair } = require('../validators/repairvalidator');
@@ -51,7 +52,7 @@ const repair = require('../models/repairsModel');
 async function createRepairs(req, res){
   const inputObject = req.body;
   console.log(inputObject);
-  const { description, category, compliance, scheduledDate, status, assignedTechnician, inventoryItems, durationRequired } = req.body;
+  const { name, description, category, compliance, scheduledDate, status, assignedTechnician, inventoryItems, durationRequired } = req.body;
 
   // let validationErrors = validateRepair(inputObject);
 
@@ -59,23 +60,24 @@ async function createRepairs(req, res){
   //   console.log(validationErrors);
   // } else {
     try {
-      const existingRepair = await repair.findOne({ assignedTechnician: assignedTechnician });
-      if (existingRepair) {
-        return res.status(400).json({ message: 'Technician already assigned' });
-      } else {
-        const newRepair = new repair({
-          description,
-          category,
-          compliance,
-          scheduledDate,
-          status,
-          assignedTechnician,
-          inventoryItems,
-          durationRequired
+      // const existingRepair = await Repair.findOne({ assignedTechnician: assignedTechnician });
+      // if (existingRepair) {
+      //   return res.status(400).json({ message: 'Technician already assigned' });
+      // } else {
+        const newRepair = new Repair({
+          name: req.body.name,
+          description: req.body.description,
+          category: req.body.category,
+          compliance: req.body.compliance,
+          scheduledDate: req.body.scheduledDate,
+          status: req.body.status,
+          assignedTechnician: req.body.assignedTechnician,
+          inventoryItems: req.body.inventoryItems,
+          durationRequired: req.body.durationRequired
         })
         await newRepair.save();
         res.status(201).json({ message: 'Repair created successfully' });
-      }
+      // }
     } catch (error) {
       console.error(error);
       res.status(500).json({ messgae: 'Internal Server Error' });
@@ -119,7 +121,7 @@ async function getRepairs(req, res){
   const repairId = req.params.id;
 
   try {
-    const doc = await repair.find();
+    const doc = await Repair.find();
 
     // Check if the repairs exists
     if (!doc) {
@@ -180,7 +182,7 @@ async function updateRepair(req, res){
 
   try {
     // Find the repair by ID
-    const doc = await repair.findById(repairId);
+    const doc = await Repair.findById(repairId);
 
     // Check if the repair exists
     if (!doc) {
@@ -200,5 +202,9 @@ async function updateRepair(req, res){
   }
 }
 
-// module.exports = router
-module.exports = { createRepairs, getRepairs, updateRepair }
+
+export { 
+  createRepairs,
+  getRepairs,
+  updateRepair 
+}

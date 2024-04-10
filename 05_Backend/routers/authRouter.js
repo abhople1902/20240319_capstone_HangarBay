@@ -1,12 +1,11 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const authController = require ("../controllers/authController");
+import _ from 'lodash';
 
+import { technicianSignup, technicianLogin, forget_password, reset_password, orgSignup, orgLogin } from '../controllers/authController.js';
 
+router.post("/techsignup", technicianSignup);
 
+router.post("/techsignin", technicianLogin);
 
-router.post('/techsignup', authController.technicianSignup);
-
-router.post('/techlogin', authController.technicianLogin);
-
-module.exports = router;
+export default router;

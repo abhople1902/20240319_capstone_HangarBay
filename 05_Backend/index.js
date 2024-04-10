@@ -1,62 +1,51 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const inventoryRoute = require('./routers/inventoryRouter');
-const complianceRoute = require('./routers/complianceRouter');
-const repairRoute = require('./routers/repairsRouter');
-const authRoute = require ('./routers/authRouter');
-const cors = require('cors')
-const technicianRoute = require('./routers/technicianRouter');
+import dotenv from 'dotenv';
+dotenv.config();
 
-const { JWT_SECRET } = require('../05_Backend/config');
+import express from "express";
+import cors from 'cors';
+import mongoose from 'mongoose';
+// const cors = require('cors')
 
+// const express = require('express');
+// const mongoose = require('mongoose');
+// const inventoryRoute = require('./routers/inventoryRouter');
+import inventoryRoutes from './routers/inventoryRouter.js';
+import technicianRoutes from './routers/technicianRouter.js';
+// const complianceRoute = require('./routers/complianceRouter');
+import complianceRoutes from './routers/complianceRouter.js';
+// const repairRoute = require('./routers/repairsRouter');
+import repairRoutes from './routers/repairsRouter.js';
+import authRoutes from './routers/authRouter.js';
+// const cors = require('cors')
+// const technicianRoute = require('./routers/technicianRouter');
+
+import { connectDatabase } from "./database.js";
+
+// import { JWT_SECRET } from "./config.js";
+
+
+
+// Middleware
 const app = express();
-const PORT = process.env.PORT || 3000;
-const MONGODB_URI = 'mongodb+srv://Ayush:2BXNWx4qaZkr3C5y@cluster0.ijs1ymf.mongodb.net/HangarBay?retryWrites=true&w=majority&appName=Cluster0';
-
-
+app.use(cors());
 app.use(express.json());
-app.use(cors);
-app.use('/auth', authRoute);
-app.use('/inventory', inventoryRoute);
-app.use('/compliance', complianceRoute);
-app.use('/repairs', repairRoute);
-app.use('/technician', technicianRoute);
+console.log("heyyy");
+
+connectDatabase().then(() => {
+  // Routes
+  app.use('/auth', authRoutes);
+  app.use('/inventory', inventoryRoutes);
+  app.use('/compliance', complianceRoutes);
+  app.use('/repairs', repairRoutes);
+  app.use('/technician', technicianRoutes);
 
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log('Connected to MongoDB');
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
-  })
-  .catch(error => console.error('MongoDB connection error:', error));
-
-
-
-// const { MongoClient, ServerApiVersion } = require('mongodb');
-// const uri = "mongodb+srv://Ayush:2BXNWx4qaZkr3C5y@cluster0.ijs1ymf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
-// // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-// const client = new MongoClient(uri, {
-//   serverApi: {
-//     version: ServerApiVersion.v1,
-//     strict: true,
-//     deprecationErrors: true,
-//   }
-// });
-
-// async function run() {
-//   try {
-//     // Connect the client to the server	(optional starting in v4.7)
-//     await client.connect();
-//     // Send a ping to confirm a successful connection
-//     await client.db("Hangarbay").command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     await client.close();
-//   }
-// }
-// run().catch(console.dir);
-
+  // Start server
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server is running. Listening on port ${PORT}`);
+  });
+}).catch(error => {
+  console.error("Error connecting to database:", error);
+  process.exit(1); // Exit the process with error status code
+});

@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import jwt from 'jsonwebtoken'
-import {technicianModel} from '../model/index.js'
+import Technican from '../models/technicianModel.js';
 
 //Require Function to Login
 const requireLogin = (req, res, next) => {
@@ -17,12 +17,10 @@ const requireLogin = (req, res, next) => {
           return res.status(401).json({ error: "You must be logged out" });
       }
       // If verification is successful, attach user data to the request object
-      req.technician = payload;
+      req.user = payload;
       // Call the next middleware or route handler
       next();
   });
 };
 
-   
-   
 export default requireLogin

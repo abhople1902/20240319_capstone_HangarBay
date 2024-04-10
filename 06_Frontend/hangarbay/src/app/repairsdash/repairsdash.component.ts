@@ -17,6 +17,8 @@ export class RepairsdashComponent implements OnInit {
   // cardTitle: string = '';
   // cardSubtitle: string = '';
   repairData: any[] = [];
+  intro = '';
+  position: String = '';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -25,6 +27,16 @@ export class RepairsdashComponent implements OnInit {
   }
 
   fetchRepairData() {
+    const whoareyou = localStorage.getItem('role');
+    const name = localStorage.getItem('username');
+    this.intro = name ?? '';
+    if (whoareyou == "operator") {
+      this.position = "Operator";
+    } else if (whoareyou == "admin") {
+      this.position = "Admin";
+    }
+
+
     // Make HTTP request to fetch data from your API
     this.http.get<any>('http://localhost:3000/repairs/all')
       .subscribe(
