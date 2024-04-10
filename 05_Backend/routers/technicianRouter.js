@@ -1,16 +1,13 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const _ = require('lodash');
+import _ from 'lodash';
 
-const technician = require('../models/technicianModel');
-const technicianController = require('../controllers/technicianController');
-
-const { ConnectionClosedEvent } = require('mongodb');
+import { findTechnicianByCategory } from '../controllers/technicianController.js';
 
 
 /**
  * API for getting the tchnician based on category/specialization
  */
-router.post("/operator", technicianController.findTechnicianByCategory);
+router.post("/operator", findTechnicianByCategory);
 
-module.exports = router;
+export default router;

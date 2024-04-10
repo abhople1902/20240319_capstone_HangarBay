@@ -61,7 +61,8 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Category</mat-label>
-          <mat-select formControlName="category" required (click)="toggleSection()">
+          <!-- <mat-select formControlName="category" required (click)="toggleSection('compliance')" (blur)="toggleSection('compliance')"> -->
+          <mat-select formControlName="category" required>
             <mat-option *ngFor="let category of categories" [value]="category">
               {{ category }}
             </mat-option>
@@ -82,7 +83,8 @@
           <input matInput [matDatepicker]="picker" formControlName="scheduledDate" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="(repairsForm.get('scheduledDate')?.hasError('required') ?? false)">Please schedule the repair</mat-error>
+          <mat-error *ngIf="(repairsForm.get('scheduledDate')?.hasError('required') ?? false)">Please schedule the
+            repair</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -98,19 +100,24 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Assign operator</mat-label>
-          <textarea matInput formControlName="assignedTechnician" required (click)="toggleSection()"></textarea>
-          <mat-error *ngIf="(repairsForm.get('assignedTechnician')?.hasError('required') ?? false)">Please assign the task to a technician</mat-error>
+          <textarea matInput formControlName="assignedTechnician" required (click)="toggleSection('technician')"
+            (blur)="toggleSection('technician')"></textarea>
+          <mat-error *ngIf="(repairsForm.get('assignedTechnician')?.hasError('required') ?? false)">Please assign the
+            task to a technician</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Inventory requirements</mat-label>
-          <textarea matInput formControlName="inventoryItems" (click)="toggleSection()"></textarea>
+          <textarea matInput formControlName="inventoryItems" (click)="toggleSection('inventory')"
+            (blur)="toggleSection('compliance')"></textarea>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Regulations</mat-label>
-          <textarea matInput formControlName="compliance" required (click)="toggleSection()"></textarea>
-          <mat-error *ngIf="(repairsForm.get('compliance')?.hasError('required') ?? false)">Please specify the regulations</mat-error>
+          <textarea matInput formControlName="compliance" required (click)="toggleSection('compliance')"
+            (blur)="toggleSection('compliance')"></textarea>
+          <mat-error *ngIf="(repairsForm.get('compliance')?.hasError('required') ?? false)">Please specify the
+            regulations</mat-error>
         </mat-form-field>
 
         <button mat-raised-button color="primary" type="submit" [disabled]="repairsForm.invalid">Submit</button>
@@ -119,7 +126,64 @@
   </div>
 
   <div class="right-section" [@revealSection]="isOpen ? 'open' : 'closed'">
-    <h1>Hello</h1>
+    <div *ngIf="formFieldClicked == 'compliance'">
+      <h3>All Compliances</h3>
+      <br>
+      <div *ngFor="let compliance of complianceData">
+        <mat-card class="repairs-card">
+          <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-title>{{ compliance.title }}</mat-card-title> <!-- Use category as title -->
+              <mat-card-subtitle>{{ compliance.category }}</mat-card-subtitle> <!-- Use description as subtitle -->
+              <!-- <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" > -->
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content>
+            {{ compliance.content }} <!-- Use status as longtext -->
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div *ngIf="formFieldClicked == 'inventory'">
+      <h3>All Inventory Items</h3>
+      <br>
+      <div *ngFor="let inventory of inventoryData">
+        <mat-card class="repairs-card">
+          <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-title>{{ inventory.name }}</mat-card-title> <!-- Use category as title -->
+              <mat-card-subtitle>{{ inventory.category }}</mat-card-subtitle> <!-- Use description as subtitle -->
+              <mat-card-subtitle>{{ inventory.quantity }}</mat-card-subtitle> <!-- Use description as subtitle -->
+              <!-- <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" > -->
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content>
+            {{ inventory.unitPrice }} <!-- Use status as longtext -->
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div *ngIf="formFieldClicked == 'technician'">
+      <h3>Technicians for {{ categorySelected }}</h3>
+      <br>
+      <div *ngFor="let technician of technicianData">
+        <mat-card class="repairs-card">
+          <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-title>{{ technician.username }}</mat-card-title>
+              <mat-card-subtitle>{{ technician.specializations }}</mat-card-subtitle>
+              <mat-card-subtitle>{{ technician.experienceYears }} years</mat-card-subtitle>
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content>
+            {{ technician.email }}
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
   </div>
 
 

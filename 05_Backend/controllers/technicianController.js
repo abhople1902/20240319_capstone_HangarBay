@@ -1,9 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const _ = require('lodash');
-const {technicianModel} = require('../models/index');
+import _ from 'lodash';
 
-const { ConnectionClosedEvent } = require('mongodb');
+import Technician from '../models/technicianModel.js';
 
 
 /**
@@ -30,11 +29,11 @@ const { ConnectionClosedEvent } = require('mongodb');
 // })
 
 async function findTechnicianByCategory(req, res) {
-  special = req.body;
+  const special = req.body;
   console.log(req.body);
 
   try {
-    let item = await technicianModel.findOne({ specializations: special.specializations })
+    let item = await Technician.find({ specializations: special.specializations })
 
     res.json(item);
 
@@ -49,4 +48,6 @@ async function findTechnicianByCategory(req, res) {
 }
 
 // module.exports = router;
-module.exports = { findTechnicianByCategory }
+export {
+  findTechnicianByCategory
+}

@@ -1,25 +1,20 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const _ = require('lodash');
+import _ from 'lodash';
 
-const compliance = require('../models/complianceModel');
-const complianceController = require('../controllers/complianceController');
-
-const { validateInventoryItem } = require('../validators/itemvalidator');
-const { ConnectionClosedEvent } = require('mongodb');
+import { getAllCompliances, getComplianceDocument } from "../controllers/complianceController.js";
 
 
 /**
  * API for getting the compliance documents
  */
-router.post("/document", complianceController.getComplianceDocument);
+router.get("/document", getComplianceDocument);
 
 
 /**
  * API for getting the compliance documents
  */
-router.get("/all", complianceController.getAllCompliances);
+router.get("/all", getAllCompliances);
 
 
-// module.exports = router;
-module.exports = router
+export default router;

@@ -78,11 +78,11 @@ const TechnicianSchema = new mongoose.Schema({
     enum: ["operator","admin"],
     default: "operator"
   },
-  specializations: [{
+  specializations: {
     type: String,
     enum: category,
     required: true
-  }],
+  },
   experienceYears: {
     type: Number,
     required: true

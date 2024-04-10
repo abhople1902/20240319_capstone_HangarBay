@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import InventoryItem from '../models/inventoryModel.js';
 
-import validateInventoryItem from '../validators/itemvalidator.js';
+// import validateInventoryItem from '../validators/itemvalidator.js';
 // const { ConnectionClosedEvent } = require('mongodb');
 
 
@@ -42,13 +42,13 @@ async function getInventory(req, res) {
   try {
     var item = new Array();
     let items = await InventoryItem.find({ category: category })
-    items.forEach((x) => {
-      item.push(x);
-    })
+    // items.forEach((x) => {
+    //   item.push(x);
+    // })
 
-    res.json(item);
+    res.json(items);
 
-    if (!item) {
+    if (!items) {
       return res.status(401).json({ message: 'Invalid id' });
     }
 

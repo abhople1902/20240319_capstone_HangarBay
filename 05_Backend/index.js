@@ -10,7 +10,9 @@ import mongoose from 'mongoose';
 // const mongoose = require('mongoose');
 // const inventoryRoute = require('./routers/inventoryRouter');
 import inventoryRoutes from './routers/inventoryRouter.js';
+import technicianRoutes from './routers/technicianRouter.js';
 // const complianceRoute = require('./routers/complianceRouter');
+import complianceRoutes from './routers/complianceRouter.js';
 // const repairRoute = require('./routers/repairsRouter');
 import repairRoutes from './routers/repairsRouter.js';
 import authRoutes from './routers/authRouter.js';
@@ -33,9 +35,9 @@ connectDatabase().then(() => {
   // Routes
   app.use('/auth', authRoutes);
   app.use('/inventory', inventoryRoutes);
-  // app.use('/compliance', complianceRoute);
+  app.use('/compliance', complianceRoutes);
   app.use('/repairs', repairRoutes);
-  // app.use('/technician', technicianRoute);
+  app.use('/technician', technicianRoutes);
 
 
   // Start server

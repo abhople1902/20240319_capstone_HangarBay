@@ -41,7 +41,7 @@ export class SidebarComponent implements OnInit{
       const whoareyou = localStorage.getItem('role');
       if(whoareyou == "operator"){
         this.sideitems = [
-          { label: 'My Repairs', iconClass: 'fa-solid fa-plane', route: '/createrepairs'},
+          { label: 'Create Repairs', iconClass: 'fa-solid fa-plane', route: '/createrepairs'},
           { label: 'Inventory', iconClass: 'fa-solid fa-gears', route: '/addinventory'}
         ];
       } else if(whoareyou == "admin"){

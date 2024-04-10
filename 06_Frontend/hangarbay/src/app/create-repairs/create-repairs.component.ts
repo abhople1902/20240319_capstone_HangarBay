@@ -9,6 +9,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
+
+//Services
+import { ComplianceService } from '../services/complianceService/compliance.service';
+import { InventoryService } from '../services/inventoryService/inventory.service';
+import { CreateRepairService } from '../services/createrepair/create-repair.service';
+import { TechnicianService } from '../services/technicianService/technician.service';
 
 import { InformationDialogComponent } from '../information-dialog/information-dialog.component';
 // import { InfoItem } from './info.model';
@@ -18,6 +25,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'; // Import F
 
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { scheduled } from 'rxjs';
+import { response } from 'express';
 
 
 // Add a model for your form data (modify as needed)
@@ -38,6 +46,7 @@ import { scheduled } from 'rxjs';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCardModule,
     CommonModule
   ],
   animations: [
@@ -74,6 +83,11 @@ import { scheduled } from 'rxjs';
 export class CreateRepairsComponent implements OnInit {
   isOpen: boolean = false; // Variable to track whether the dropdown is clicked
   selectedInfo: String = '';
+  complianceData: any[] = [];
+  inventoryData: any[] = [];
+  technicianData: any[] = [];
+  categorySelected: any;
+  formFieldClicked: any;
 
   repairsForm = new FormGroup({
     repairName: new FormControl('', Validators.required),
@@ -93,7 +107,7 @@ export class CreateRepairsComponent implements OnInit {
   // infoData: InfoItem[]; // Not used in this version
   formData: FormData = { field: '' }; // Initialize form data
 
-  constructor(private dataService: DataService, private dialog: MatDialog) {}
+  constructor(private dataService: DataService, private dialog: MatDialog, private complianceService: ComplianceService, private inventoryService: InventoryService, private technicianService: TechnicianService, private createRepairService: CreateRepairService) {}
 
   ngOnInit() {
     // No need to fetch information initially
@@ -108,16 +122,72 @@ export class CreateRepairsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.selectedInfo = result;
-        // Update your form with the selected information (if applicable)
+        this.complianceData
       }
     });
   }
 
-  toggleSection() {
-    this.isOpen = true;
+  toggleSection(par: String) {
+    if(par == 'compliance'){
+      this.formFieldClicked = 'compliance'
+      const cat = this.repairsForm.value.category;
+      this.complianceService.getComplianceDocument(cat!).subscribe(response => {
+        this.complianceData = response;
+      });
+    } else if(par == 'inventory'){
+      this.formFieldClicked = 'inventory'
+      const inv = this.repairsForm.value.category;
+      this.inventoryService.getInventoryItem(inv!).subscribe(response => {
+        this.inventoryData = response;
+      })
+    } else if(par == 'technician'){
+      this.formFieldClicked = 'technician'
+      const tech = this.repairsForm.value.category;
+      this.categorySelected = tech;
+      const techData = {
+        specializations: tech
+      }
+      this.technicianService.getTechnician(techData).subscribe(response => {
+        this.technicianData = response;
+      })
+    }
+
+    if(this.isOpen){
+      this.isOpen = false;
+    }else {
+      this.isOpen = true;
+    }
   }
 
   onSubmit() {
-    console.log("Repair created");
+    if (this.repairsForm.valid) {
+      const repairData = {
+        name:this.repairsForm.value.repairName,
+        category:this.repairsForm.value.category,
+        durationRequired:this.repairsForm.value.durationRequired,
+        description:this.repairsForm.value.description,
+        compliance:this.repairsForm.value.compliance,
+        assignedTechnician:this.repairsForm.value.assignedTechnician,
+        inventoryItems:this.repairsForm.value.inventoryItems,
+        status:this.repairsForm.value.status,
+        scheduledDate:this.repairsForm.value.scheduledDate
+      };
+
+      console.log(repairData);
+      this.createRepairService.createRepair(repairData).subscribe(
+        (response) => {
+          console.log('Repair created successfully:', response);
+
+          // TO DO
+          // this.router.navigateByUrl('/confirmationpage');
+          
+        },
+        (error) => {
+          console.error(error);
+          // Add any additional logic for error handling
+        }
+      );
+
+    }
   }
 }
