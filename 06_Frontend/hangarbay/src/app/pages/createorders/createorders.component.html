@@ -1,0 +1,57 @@
+<div class="main-content">
+
+  <div class="left">
+    <!-- <app-sidebar [sidebarItems]="[
+  { label: 'Back to all repairs', iconClass: 'fa-solid fa-plane', route: '/'},
+  { label: 'Compliances', iconClass: 'fa-solid fa-tv', route: '/regulations'}
+ ]"></app-sidebar> -->
+  </div>
+
+
+  <div class="right">
+    <div class="create-cause-page">
+      <div class="inside-content">
+        <div class="header">
+          <h1>Order Aircraft part</h1>
+        </div>
+
+        <div class="form-details">
+          <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline">
+              <mat-label>Part Name</mat-label>
+              <input matInput formControlName="itemName" required>
+              <mat-error *ngIf="(orderForm.get('name')?.hasError('required') ?? false)">Part name is
+                required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Quantity</mat-label>
+              <textarea matInput formControlName="quantity" required></textarea>
+              <mat-error *ngIf="(orderForm.get('quantity')?.hasError('required') ?? false)">Please specify
+                quantity</mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="orderForm.invalid">Place Order</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash">
+    <h3>All Orders</h3>
+    <br>
+    <div *ngFor="let order of orderData">
+      <mat-card class="repairs-card">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{ order.itemName }}</mat-card-title> <!-- Use category as title -->
+            <mat-card-subtitle>{{ order.quantity }}</mat-card-subtitle> <!-- Use description as subtitle -->
+            <!-- <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" > -->
+          </mat-card-title-group>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+
+</div>

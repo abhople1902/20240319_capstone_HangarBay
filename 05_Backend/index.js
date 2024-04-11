@@ -16,6 +16,7 @@ import complianceRoutes from './routers/complianceRouter.js';
 // const repairRoute = require('./routers/repairsRouter');
 import repairRoutes from './routers/repairsRouter.js';
 import authRoutes from './routers/authRouter.js';
+import orderRoutes from './routers/orderRouter.js';
 // const cors = require('cors')
 // const technicianRoute = require('./routers/technicianRouter');
 
@@ -38,6 +39,7 @@ connectDatabase().then(() => {
   app.use('/compliance', complianceRoutes);
   app.use('/repairs', repairRoutes);
   app.use('/technician', technicianRoutes);
+  app.use('/order', orderRoutes);
 
 
   // Start server

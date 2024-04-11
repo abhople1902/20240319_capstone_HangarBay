@@ -95,8 +95,25 @@ const TechnicianSchema = new mongoose.Schema({
 });
 
 
+
+/**
+ * Orders Schema
+ */
+const OrderSchema = new mongoose.Schema({
+  itemName: {
+    type: String,
+    required: true
+  },
+  quantity: {
+    type: Number,
+    required: true
+  }
+})
+
+
 export { 
   ComplianceSchema,
   InventoryItemSchema,
-  TechnicianSchema
+  TechnicianSchema,
+  OrderSchema
  }

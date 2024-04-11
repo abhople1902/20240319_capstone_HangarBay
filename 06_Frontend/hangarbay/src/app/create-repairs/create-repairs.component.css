@@ -1,27 +1,50 @@
-.inside-content{
+/* Styles for the inside content */
+.inside-content {
   width: 50%;
   display: flex;
   flex-direction: column;
 }
-.create-repairs-page{
+
+/* Styles for the create repairs page */
+.create-repairs-page {
   display: flex;
   justify-content: center;
-  margin:30px 0px;
+  margin: 30px 0;
 }
 
-.form-details form{
-  margin: 50px 0px;
+/* Styles for the form details */
+.form-details form {
+  margin: 50px 0;
   display: flex;
   flex-direction: column;
 }
 
+/* Styles for the right section */
 .right-section {
-  width: 300px; /* Adjust width as needed */
-  height: 100%; /* Adjust height as needed */
-  background-color: #f0f0f0; /* Adjust background color as needed */
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 150vh;
+  background: radial-gradient(993px at 0.5% 98.5%, rgb(92, 114, 114) 0%, rgb(26, 41, 43) 46.7%, rgb(0, 0, 0) 100.2%);
   position: absolute;
   top: 0;
-  right: -300px; /* Initially hide the section */
-  transition: right 0.5s ease; /* Smooth transition */
-  overflow: hidden;
+  right: -300px;
+  transition: right 0.5s ease;
+  overflow-y: scroll;
+}
+
+.repairs-card {
+  margin-bottom: 10px;
+  border-bottom: 3px;
+  border-color: rgb(255, 255, 255);
+  background-color: #000000;
+  border-radius: 6px;
+  color: #ffffff;
+  margin-top: 20px;
+}
+
+.right-section h1 {
+  color: rgb(255, 255, 255);
+  margin-top: 350px;
+  font-weight: 400;
 }

@@ -10,11 +10,14 @@ import { RepairsdashComponent } from './repairsdash/repairsdash.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
+import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
+import { CreateordersComponent } from './pages/createorders/createorders.component';
+import { AllrepairsComponent } from './pages/allrepairs/allrepairs.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CreateRepairsComponent, CreateInventoryComponent, DashboardComponent, OpsdashComponent, CommonModule, HttpClientModule, MatInputModule],
+  imports: [RouterOutlet, CreateRepairsComponent, CreateInventoryComponent, DashboardComponent, OpsdashComponent, CommonModule, HttpClientModule, MatInputModule, ConfirmationComponent, CreateordersComponent, AllrepairsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

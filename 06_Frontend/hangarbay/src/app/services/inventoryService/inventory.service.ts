@@ -14,4 +14,8 @@ export class InventoryService {
   getInventoryItem(category: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/inventory/items?category=${category}`);
   }
+
+  getInventoryItemByName(name: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/inventory/itemname?name=${name}`);
+  }
 }

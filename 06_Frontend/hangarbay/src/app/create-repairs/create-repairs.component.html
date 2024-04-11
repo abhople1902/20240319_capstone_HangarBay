@@ -1,42 +1,3 @@
-<!-- 
-<form (ngSubmit)="submitForm()" #repairForm="ngForm">
-  <mat-form-field>
-    <input matInput placeholder="Description" name="description" [(ngModel)]="formData['description']" required>
-    <mat-error *ngIf="repairForm.controls['description'].invalid && repairForm.controls['description'].touched">
-      Description is required
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Category</mat-label>  
-    <mat-select placeholder="Category" name="category" [(ngModel)]="formData['category']" required>
-      <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
-    </mat-select>
-    <mat-error *ngIf="repairForm.controls['category'].invalid && repairForm.controls['category'].touched">
-      Category is required
-    </mat-error>
-  </mat-form-field>
-
-  <div>
-    <mat-form-field>
-      <input matInput placeholder="Compliances" name="compliances" [(ngModel)]="selectedTechnicians" disabled>
-      <mat-icon matSuffix (click)="fetchTechnicians()">refresh</mat-icon>
-      <mat-error *ngIf="technicianFetchError">Failed to fetch compliances</mat-error>
-    </mat-form-field>
-    <div *ngIf="technicians">
-      <div *ngFor="let technician of technicians">
-        <mat-checkbox [(ngModel)]="technician.selected">{{ technician.name }}</mat-checkbox>
-      </div>
-    </div>
-  </div>
-
-  <button mat-raised-button color="primary" type="button" (click)="addCompliances()">Add Selected Compliances</button>
-  <button mat-raised-button color="primary" type="submit" [disabled]="repairForm.invalid">Submit</button>
-</form> -->
-
-
-
-
 <div class="create-repairs-page">
   <div class="inside-content">
     <div class="header">
@@ -113,6 +74,11 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
+          <mat-label>Quantity</mat-label>
+          <textarea matInput formControlName="quantity"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
           <mat-label>Regulations</mat-label>
           <textarea matInput formControlName="compliance" required (click)="toggleSection('compliance')"
             (blur)="toggleSection('compliance')"></textarea>
@@ -127,7 +93,7 @@
 
   <div class="right-section" [@revealSection]="isOpen ? 'open' : 'closed'">
     <div *ngIf="formFieldClicked == 'compliance'">
-      <h3>All Compliances</h3>
+      <h1>All Compliances</h1>
       <br>
       <div *ngFor="let compliance of complianceData">
         <mat-card class="repairs-card">
@@ -146,7 +112,7 @@
     </div>
 
     <div *ngIf="formFieldClicked == 'inventory'">
-      <h3>All Inventory Items</h3>
+      <h1>All Inventory Items</h1>
       <br>
       <div *ngFor="let inventory of inventoryData">
         <mat-card class="repairs-card">
@@ -166,7 +132,7 @@
     </div>
 
     <div *ngIf="formFieldClicked == 'technician'">
-      <h3>Technicians for {{ categorySelected }}</h3>
+      <h1>Technicians for {{ categorySelected }}</h1>
       <br>
       <div *ngFor="let technician of technicianData">
         <mat-card class="repairs-card">

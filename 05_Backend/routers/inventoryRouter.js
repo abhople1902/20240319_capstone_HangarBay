@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 // const inventory = require('../models/inventoryModel');
 
-import { getInventory, addInventoryItem } from '../controllers/inventoryController.js';
+import { getInventory, getInventoryByName, addInventoryItem, updateInventory } from '../controllers/inventoryController.js';
 
 
 // import { validateInventoryItem } from '../validators/itemvalidator';
@@ -18,11 +18,17 @@ console.log("hello");
 router.get("/items", getInventory);
 
 
+router.get("/itemname", getInventoryByName);
+
+
 
 /**
  * API for creating new inventory item
  */
 router.post("/add", addInventoryItem);
+
+
+router.put("/update", updateInventory);
 
 
 export default router;

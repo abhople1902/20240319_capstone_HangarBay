@@ -7,6 +7,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { FrontComponent } from './pages/front/front.component';
+import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
+import { CreateordersComponent } from './pages/createorders/createorders.component';
+import { AllrepairsComponent } from './pages/allrepairs/allrepairs.component';
 
 export const routes: Routes = [
   { path: '', component: FrontComponent },
@@ -15,5 +18,8 @@ export const routes: Routes = [
   { path: 'createrepairs', component: CreateRepairsComponent },
   { path: 'addinventory', component: CreateInventoryComponent },
   { path: 'signin', component: SigninComponent },
-  { path: 'signup', component: SignupComponent }
+  { path: 'signup', component: SignupComponent },
+  { path: 'confirm', component: ConfirmationComponent },
+  { path: 'order', component: CreateordersComponent },
+  { path: 'allrepairs', component: AllrepairsComponent }
 ];

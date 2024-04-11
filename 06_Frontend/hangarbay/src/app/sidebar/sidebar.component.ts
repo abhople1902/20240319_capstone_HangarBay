@@ -12,7 +12,7 @@ import { log } from 'console';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit{
+export class SidebarComponent implements OnInit {
   sideitems: SidebarItem[] = [];
 
   constructor(private router: Router) { }
@@ -41,13 +41,15 @@ export class SidebarComponent implements OnInit{
       const whoareyou = localStorage.getItem('role');
       if(whoareyou == "operator"){
         this.sideitems = [
-          { label: 'Create Repairs', iconClass: 'fa-solid fa-plane', route: '/createrepairs'},
+          { label: 'My Repairs', iconClass: 'fa-solid fa-plane', route: '/createrepairs'},
           { label: 'Inventory', iconClass: 'fa-solid fa-gears', route: '/addinventory'}
         ];
       } else if(whoareyou == "admin"){
         this.sideitems = [
+          { label: 'All Repairs', iconClass: 'fa-solid fa-plane', route: '/allrepairs'},
           { label: 'Create Repair', iconClass: 'fa-solid fa-plane', route: '/createrepairs'},
-          { label: 'Create Inventory item', iconClass: 'fa-solid fa-gears', route: '/addinventory'}
+          { label: 'Create Inventory item', iconClass: 'fa-solid fa-gears', route: '/addinventory'},
+          { label: 'Place spare parts order', iconClass: 'fa-solid fa-gears', route: '/order'}
         ];
       }
     } else {

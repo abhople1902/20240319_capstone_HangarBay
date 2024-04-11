@@ -1,13 +1,21 @@
-.dash h1, .dash h2, .dash h3 {
+.dash{
   text-align: center;
   font-family: Arial, sans-serif; /* Change the font family as needed */
   font-weight: 600;
 }
 
+.dash h1, .dash h2, .dash h3 {
+  text-align: center;
+  font-family: Arial, sans-serif; /* Change the font family as needed */
+  font-weight: 600;
+  color: rgb(18, 16, 113);
+}
+
 .repairs-card {
   width: 1000px;
-  text-align: center;
+  text-align: left;
   margin-left: 200px; /* Center horizontally */
   margin-right: auto;
-  margin-top: 50px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }

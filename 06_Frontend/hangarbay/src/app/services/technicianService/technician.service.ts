@@ -13,4 +13,8 @@ export class TechnicianService {
   getTechnician(techData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/technician/operator`, techData);
   }
+
+  getTechnicianByName(name: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/technician/opinfo?name=${name}`)
+  }
 }

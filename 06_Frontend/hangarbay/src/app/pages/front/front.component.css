@@ -1,7 +1,37 @@
-.container {
-  text-align: center;
-  margin-top: 50px;
+.maincontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  overflow-y: hidden;
 }
+
+.container1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  padding-top: 150px;
+  /* margin-top: 100px; */
+  overflow-y: hidden;
+  
+  /* height: 50vh; Set container height to full viewport height */
+}
+
+.container2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: right;
+  padding-top: 150px;
+  /* margin-top: 100px; */
+  overflow-y: hidden;
+  
+  /* height: 50vh; Set container height to full viewport height */
+}
+h1{
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
 
 .buttons {
   margin-top: 20px;
@@ -13,7 +43,17 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  margin: 10px;
+  background: linear-gradient(to right, #4CAF50, #009688); /* Gradient background */
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow */
+  transition: all 0.3s ease; /* Smooth transition on hover */
 }
+
+.button:hover {
+  background: linear-gradient(to right, #009688, #4CAF50); /* Gradient background on hover */
+}
+
 
 .signin {
   background-color: black;

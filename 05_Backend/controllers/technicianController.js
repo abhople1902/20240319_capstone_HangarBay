@@ -47,7 +47,32 @@ async function findTechnicianByCategory(req, res) {
   }
 }
 
+
+
+async function findTechnicianByName(req, res) {
+  const username = req.query.name;
+  // console.log(req.body);
+
+  try {
+    let person = await Technician.findOne({ username: username })
+
+    res.json(person.email);
+
+    if (!person) {
+      return res.status(401).json({ message: 'Invalid id' });
+    }
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+
+
+
 // module.exports = router;
 export {
-  findTechnicianByCategory
+  findTechnicianByCategory,
+  findTechnicianByName
 }

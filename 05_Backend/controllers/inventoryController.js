@@ -60,6 +60,32 @@ async function getInventory(req, res) {
 
 
 
+/**
+ * API for getting inventory by name
+ */
+async function getInventoryByName(req, res) {
+  const name = req.query.name;
+
+  try {
+    let item = await InventoryItem.findOne({ name: name })
+    // items.forEach((x) => {
+    //   item.push(x);
+    // })
+
+    res.json(item.quantity);
+
+    if (!item) {
+      return res.status(401).json({ message: 'Invalid name of item' });
+    }
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+
+
 
 
 
@@ -138,6 +164,37 @@ async function addInventoryItem(req, res) {
 }
 
 
+/**
+ * API for updating inventory
+ */
+async function updateInventory(req, res){
+  const itemname = req.query.name;
+  const { quantity } = req.body;
+
+  try {
+    // Find the repair by ID
+    const doc = await InventoryItem.findOne({name: itemname});
+
+    // Check if the item exists
+    if (!doc) {
+      return res.status(404).json({ message: 'Item not found' });
+    }
+    // Update the status of the repair
+    const originalQuantity = doc.quantity;
+
+
+    doc.quantity = originalQuantity - quantity;
+    await doc.save();
+
+    // Return the updated repair
+    res.json(doc);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+
 
 
 // Default route for handling undefined routes
@@ -148,6 +205,8 @@ async function addInventoryItem(req, res) {
 
 
 export { 
-  getInventory, 
-  addInventoryItem 
+  getInventory,
+  getInventoryByName,
+  addInventoryItem,
+  updateInventory
 }

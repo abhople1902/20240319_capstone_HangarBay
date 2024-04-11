@@ -5,6 +5,8 @@ import _ from 'lodash';
 
 import Repair from '../models/repairsModel.js';
 // const Technician = require('../models/technicianScheme');
+import Technician from '../models/technicianModel.js';
+import nodemailer from 'nodemailer';
 
 // const { validateRepair } = require('../validators/repairvalidator');
 // const { ConnectionClosedEvent } = require('mongodb');
@@ -49,7 +51,7 @@ import Repair from '../models/repairsModel.js';
 
 // })
 
-async function createRepairs(req, res){
+async function createRepairs(req, res) {
   const inputObject = req.body;
   console.log(inputObject);
   const { name, description, category, compliance, scheduledDate, status, assignedTechnician, inventoryItems, durationRequired } = req.body;
@@ -59,29 +61,67 @@ async function createRepairs(req, res){
   // if (!(_.isEmpty(validationErrors))) {
   //   console.log(validationErrors);
   // } else {
-    try {
-      // const existingRepair = await Repair.findOne({ assignedTechnician: assignedTechnician });
-      // if (existingRepair) {
-      //   return res.status(400).json({ message: 'Technician already assigned' });
-      // } else {
-        const newRepair = new Repair({
-          name: req.body.name,
-          description: req.body.description,
-          category: req.body.category,
-          compliance: req.body.compliance,
-          scheduledDate: req.body.scheduledDate,
-          status: req.body.status,
-          assignedTechnician: req.body.assignedTechnician,
-          inventoryItems: req.body.inventoryItems,
-          durationRequired: req.body.durationRequired
-        })
-        await newRepair.save();
-        res.status(201).json({ message: 'Repair created successfully' });
-      // }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ messgae: 'Internal Server Error' });
-    }
+  try {
+    const techinfo = await Technician.findOne({ username: assignedTechnician });
+    // const existingRepair = await Repair.findOne({ assignedTechnician: assignedTechnician });
+    // if (existingRepair) {
+    //   return res.status(400).json({ message: 'Technician already assigned' });
+    // } else {
+    const newRepair = new Repair({
+      name: req.body.name,
+      description: req.body.description,
+      category: req.body.category,
+      durationRequired: req.body.durationRequired,
+      quantity: req.body.quantity,
+      compliance: req.body.compliance,
+      scheduledDate: req.body.scheduledDate,
+      status: req.body.status,
+      assignedTechnician: req.body.assignedTechnician,
+      inventoryItems: req.body.inventoryItems,
+    })
+    await newRepair.save();
+    
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: 'apbhople19@gmail.com',
+        //  Pass contain the App passwords 
+        pass: ''
+      }
+    });
+
+    const emailData = {
+      from: 'Air India Hangar', // Sender information
+      to: techinfo.email, // Use fetched patient email
+      subject: 'New Repair scheduled',
+      text: `The following repair is created and assigned to you`,
+      html: `<!DOCTYPE html>
+              <html>
+              <body>
+                <h1>Air India Hangar</h1>
+                <p>Dear operator,</p>
+                <p>New Repair scheduled</p>
+                <p>Details:</p>
+                <ul>
+                  <li>Name: ${req.body.name}</li>
+                  <hr>
+                  <li>Category:
+                    <ul>
+                      ${req.body.category}
+                    </ul>
+                  </li>
+                </ul>
+              </body>
+              </html>`
+      };
+      await transporter.sendMail(emailData);
+
+      res.status(201).json({ message: 'Repair created successfully and mail sent' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ messgae: 'Internal Server Error' });
+  }
   // }
 }
 
@@ -117,8 +157,7 @@ async function createRepairs(req, res){
 // });
 
 
-async function getRepairs(req, res){
-  const repairId = req.params.id;
+async function getRepairs(req, res) {
 
   try {
     const doc = await Repair.find();
@@ -176,7 +215,7 @@ async function getRepairs(req, res){
 // });
 
 
-async function updateRepair(req, res){
+async function updateRepair(req, res) {
   const repairId = req.params.id;
   const { status } = req.body;
 
@@ -203,8 +242,8 @@ async function updateRepair(req, res){
 }
 
 
-export { 
+export {
   createRepairs,
   getRepairs,
-  updateRepair 
+  updateRepair
 }
