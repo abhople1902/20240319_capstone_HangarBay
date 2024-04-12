@@ -135,6 +135,10 @@ export class CreateRepairsComponent implements OnInit {
     });
   }
 
+  navigateBack() {
+    this.router.navigate(['dash']);
+  }
+
   toggleSection(par: String) {
     if(par == 'compliance'){
       this.formFieldClicked = 'compliance'

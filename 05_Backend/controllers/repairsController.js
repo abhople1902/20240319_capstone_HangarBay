@@ -85,9 +85,9 @@ async function createRepairs(req, res) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: 'apbhople19@gmail.com',
+        user: 'nodemailer470@gmail.com',
         //  Pass contain the App passwords 
-        pass: ''
+        pass: 'aydr qxge onmi dcik'
       }
     });
 
@@ -179,6 +179,28 @@ async function getRepairs(req, res) {
 
 
 
+async function getRepairsByUsername(req, res) {
+  const assignedTechnician = req.query.username;
+  try {
+    const doc = await Repair.find({ assignedTechnician: assignedTechnician });
+
+    // Check if the repairs exists
+    if (!doc) {
+      return res.status(404).json({ message: 'No Repairs found. Come back later' });
+    }
+    // Return the repairs
+    res.json(doc);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+
+
+
+
+
 
 
 
@@ -245,5 +267,6 @@ async function updateRepair(req, res) {
 export {
   createRepairs,
   getRepairs,
+  getRepairsByUsername,
   updateRepair
 }

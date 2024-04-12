@@ -13,11 +13,12 @@ import { MatInputModule } from '@angular/material/input';
 import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
 import { CreateordersComponent } from './pages/createorders/createorders.component';
 import { AllrepairsComponent } from './pages/allrepairs/allrepairs.component';
+import { MyrepairsComponent } from './pages/myrepairs/myrepairs.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CreateRepairsComponent, CreateInventoryComponent, DashboardComponent, OpsdashComponent, CommonModule, HttpClientModule, MatInputModule, ConfirmationComponent, CreateordersComponent, AllrepairsComponent],
+  imports: [RouterOutlet, CreateRepairsComponent, CreateInventoryComponent, DashboardComponent, OpsdashComponent, CommonModule, HttpClientModule, MatInputModule, ConfirmationComponent, CreateordersComponent, AllrepairsComponent, MyrepairsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

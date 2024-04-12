@@ -10,6 +10,7 @@ import { FrontComponent } from './pages/front/front.component';
 import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
 import { CreateordersComponent } from './pages/createorders/createorders.component';
 import { AllrepairsComponent } from './pages/allrepairs/allrepairs.component';
+import { MyrepairsComponent } from './pages/myrepairs/myrepairs.component';
 
 export const routes: Routes = [
   { path: '', component: FrontComponent },
@@ -21,5 +22,6 @@ export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'confirm', component: ConfirmationComponent },
   { path: 'order', component: CreateordersComponent },
-  { path: 'allrepairs', component: AllrepairsComponent }
+  { path: 'allrepairs', component: AllrepairsComponent },
+  { path: 'myrepairs', component: MyrepairsComponent }
 ];

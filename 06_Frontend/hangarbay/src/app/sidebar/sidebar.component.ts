@@ -41,7 +41,7 @@ export class SidebarComponent implements OnInit {
       const whoareyou = localStorage.getItem('role');
       if(whoareyou == "operator"){
         this.sideitems = [
-          { label: 'My Repairs', iconClass: 'fa-solid fa-plane', route: '/createrepairs'},
+          { label: 'My Repairs', iconClass: 'fa-solid fa-plane', route: '/myrepairs'},
           { label: 'Inventory', iconClass: 'fa-solid fa-gears', route: '/addinventory'}
         ];
       } else if(whoareyou == "admin"){
@@ -49,7 +49,7 @@ export class SidebarComponent implements OnInit {
           { label: 'All Repairs', iconClass: 'fa-solid fa-plane', route: '/allrepairs'},
           { label: 'Create Repair', iconClass: 'fa-solid fa-plane', route: '/createrepairs'},
           { label: 'Create Inventory item', iconClass: 'fa-solid fa-gears', route: '/addinventory'},
-          { label: 'Place spare parts order', iconClass: 'fa-solid fa-gears', route: '/order'}
+          { label: 'Spare parts order', iconClass: 'fa-solid fa-gears', route: '/order'}
         ];
       }
     } else {
