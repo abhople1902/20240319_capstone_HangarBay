@@ -1,12 +1,13 @@
 .main-content {
   display: flex;
-  
+  flex-direction: column;
 }
 
 .right {
-  width: 80%;
-  display: flex;
-  align-items: start;
+  margin-top: 80px;
+  width: 100%;
+  display: block;
+  align-items: center;
   justify-content: center;
 }
 

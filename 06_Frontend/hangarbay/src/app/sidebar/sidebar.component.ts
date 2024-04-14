@@ -37,7 +37,7 @@ export class SidebarComponent implements OnInit {
   //   }
   // }
   setSidebar(){
-    if (typeof localStorage !== 'undefined') {
+    // if (typeof localStorage !== 'undefined') {
       const whoareyou = localStorage.getItem('role');
       if(whoareyou == "operator"){
         this.sideitems = [
@@ -52,10 +52,10 @@ export class SidebarComponent implements OnInit {
           { label: 'Spare parts order', iconClass: 'fa-solid fa-gears', route: '/order'}
         ];
       }
-    } else {
-      console.log("localStorage not available");
+    // } else {
+    //   console.log("localStorage not available");
       
-    }
+    // }
   }
 
   // If you need to handle navigation within the SidebarComponent, you can define methods here

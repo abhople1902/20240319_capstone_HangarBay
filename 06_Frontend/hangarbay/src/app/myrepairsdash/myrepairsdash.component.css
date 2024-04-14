@@ -1,19 +1,39 @@
 .dash{
-  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
   text-align: center;
-  font-family: Arial, sans-serif; /* Change the font family as needed */
+  font-family: Arial, sans-serif;
   font-weight: 600;
+  justify-content: space-between;
 }
 
-.dash h1, .dash h2, .dash h3 {
-  text-align: center;
-  font-family: Arial, sans-serif; /* Change the font family as needed */
-  font-weight: 600;
-  color: rgb(18, 16, 113);
+
+.categoryimage {
+  margin-top: 100px;
+  margin-left: 30px;
+  display: flex;
+  position: fixed;
+  width: 500px;
+  height: 100%;
+}
+
+.imagestyle {
+  width: 350px;
+  height: 250px;
+}
+
+.data {
+  margin-left: 600px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex-grow: 1;
+  padding: 20px;
 }
 
 .repairs-card {
-  width: 1000px;
+  display: flex;
+  width: 600px;
   text-align: left;
   margin-left: 50px; /* Center horizontally */
   margin-right: auto;

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { StatsComponent } from '../../stats/stats.component';
 
 @Component({
   selector: 'app-front',
   standalone: true,
-  imports: [],
+  imports: [StatsComponent],
   templateUrl: './front.component.html',
   styleUrl: './front.component.css'
 })

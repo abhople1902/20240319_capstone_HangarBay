@@ -60,6 +60,20 @@ async function getInventory(req, res) {
 
 
 
+async function getAllInventory(req, res) {
+  try{
+    const items = await InventoryItem.find();
+    if (!items) {
+      return res.status(404).json({ message: 'No Items found in inventory. Come back later' });
+    }
+    res.json(items);
+
+  } catch(error){
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
 /**
  * API for getting inventory by name
  */
@@ -206,6 +220,7 @@ async function updateInventory(req, res){
 
 export { 
   getInventory,
+  getAllInventory,
   getInventoryByName,
   addInventoryItem,
   updateInventory

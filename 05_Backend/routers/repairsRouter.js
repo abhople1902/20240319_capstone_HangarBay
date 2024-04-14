@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 // const inventory = require('../models/inventoryScheme');
 // const repair = require('../models/repairsModel');
-import {createRepairs, getRepairs, updateRepair} from '../controllers/repairsController.js';
+import {createRepairs, getRepairs, updateRepair, getRepairsByUsername} from '../controllers/repairsController.js';
 // const Technician = require('../models/technicianScheme');
 
 // const { validateRepair } = require('../validators/repairvalidator');
@@ -22,6 +22,11 @@ router.post("/create", createRepairs);
  * API to get all repairs
  */
 router.get("/all", getRepairs);
+
+/**
+ * API to get repairs by username
+ */
+router.get("/operator", getRepairsByUsername);
 
 
 

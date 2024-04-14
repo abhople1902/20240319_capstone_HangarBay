@@ -75,65 +75,15 @@ const technicianLogin = async (req, res) => {
       token,
       role: tech.role,
       techId: tech._id,
+      specialization: tech.specializations
     });
   } catch (error) {
     console.error("Error during technican login:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
-// const orgSignup = async (req, res) => {
-//   try {
-//       const { name, email, password, location } = req.body;
-//       // Validate user input
-//       // const validation = signupValidation({ name, email, password });
-//       // if (!validation.success) {
-//       //     return res.status(400).json({ error: validation.error });
-//       // }
-//       // Check if username or email already exists
-//       const existingOrg = await Organization.findOne({ name });     //Doubt syntax coloring not happening
-//       if (existingOrg) {
-//           return res.status(400).json({ error: 'Username or email already exists' });
 
-const orgSignup = async (req, res) => {
-  try {
-    const { name, email, password, location, contactNumber } = req.body;
 
-    // Validate user input (You can uncomment this part if you have validation logic)
-    // const validation = signupValidation({ name, email, password });
-    // if (!validation.success) {
-    //     return res.status(400).json({ error: validation.error });
-    // }
-    // Check if organization name already exists
-    const existingOrg = await Organization.findOne({ name });
-    if (existingOrg) {
-      return res
-        .status(400)
-        .json({ error: "Organization name already exists" });
-    }
-    const hashedPassword = await bcrypt.hash(password, 10);
-    // Create a new organization
-    const newOrg = new Organization({
-      name,
-      email,
-      password: hashedPassword,// Remember to hash the password before storing it in the database
-      location,
-      contactNumber
-    });
-
-    // Save the new organization to the database
-    await newOrg.save();
-    // Remove sensitive information before sending response
-    newOrg.password = undefined;
-    // Send success response
-    res.status(201).json({
-      message: "Organization registered successfully",
-      organization: newOrg,
-    });
-  } catch (error) {
-    console.error("Error during organization registration:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-};
 /**
  * Send a reset password email.
  * @param {object} req - The request object.
@@ -272,36 +222,10 @@ const isTokenExpired = (timestamp) => {
   const currentTime = new Date().getTime();
   return currentTime - timestamp > expirationTime;
 };
-const orgLogin = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    // Find user by username
-    const org = await Organization.findOne({ email }); // Doubt syntax coloring not happening
-      // Check if user exists
-      if (!org) {
-          return res.status(404).json({ error: 'Org not found' });
-      }
-    // Check password
-    const isPasswordValid = await bcrypt.compare(password, org.password);
-    if (!isPasswordValid) {
-      return res.status(401).json({ error: "Invalid password" });
-    }
-      // Generate JWT token
-      const token = jwt.sign({ _id: org._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
-    // Send success response with username and token
-    res
-      .status(200)
-      .json({ message: "Org signed in successfully", name: org.name, token, orgId:org._id });
-  } catch (error) {
-    console.error("Error during org login:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-};
+
 export {
   technicianSignup,
   technicianLogin,
   forget_password,
   reset_password,
-  orgSignup,
-  orgLogin
 };

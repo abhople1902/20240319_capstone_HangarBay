@@ -7,27 +7,27 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
-
 //Services
 import { CreateRepairService } from '../services/createrepair/create-repair.service';
 import { error } from 'console';
 
-
 @Component({
-  selector: 'app-repairsdash',
+  selector: 'app-myrepairsdash',
   standalone: true,
   imports: [MatCardModule, CommonModule, MatFormFieldModule, MatSelectModule, MatButtonModule],
-  templateUrl: './repairsdash.component.html',
-  styleUrls: ['./repairsdash.component.css']
+  templateUrl: './myrepairsdash.component.html',
+  styleUrl: './myrepairsdash.component.css'
 })
-export class RepairsdashComponent implements OnInit {
+export class MyrepairsdashComponent implements OnInit {
   // longText: string = '';
   // cardTitle: string = '';
   // cardSubtitle: string = '';
   repairData: any[] = [];
   intro = '';
   position: String = '';
-  isLoading: Boolean = false
+  isLoading: Boolean = false;
+  specialization: string = '';
+  imageUrl: string = '';
   // statusChanged: Boolean = false;
 
   statuses = ['In Progress', 'Completed', 'Delayed'];
@@ -35,6 +35,20 @@ export class RepairsdashComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private createRepairService: CreateRepairService) { }
 
   ngOnInit(): void {
+
+    const special = localStorage.getItem('category');
+    this.specialization = special!;
+    if(special == 'Avionics'){
+      this.imageUrl = 'assets/avionics.png';
+    } else if(special == 'Airframe'){
+      this.imageUrl = 'assets/airframe.jpg';
+    } else if(special == 'Interior'){
+      this.imageUrl = 'assets/interior.png';
+    } else if(special == 'Engine'){
+      this.imageUrl = 'assets/engine.png';
+    }
+
+
     this.fetchRepairData();
 
     this.repairData.forEach(repair => {
@@ -57,10 +71,10 @@ export class RepairsdashComponent implements OnInit {
     this.createRepairService.updateRepair(statusData, repair._id).subscribe(
       (response) => {
         console.log("Repair status updated:\n", response);
-        this.isLoading = true; // Show loading indicator
+        this.isLoading = true;
         setTimeout(() => {
           window.location.reload();
-          this.isLoading = false; // Hide loading indicator after reloading
+          this.isLoading = false;
         }, 3000);
       },
       (error) => {
@@ -80,7 +94,7 @@ export class RepairsdashComponent implements OnInit {
 
 
     // Make HTTP request to fetch data from your API
-    this.http.get<any>('http://localhost:3000/repairs/all')
+    this.http.get<any>(`http://localhost:3000/repairs/operator?username=${name}`)
       .subscribe(
         (data: any[]) => {
           // Extract required fields from the API response

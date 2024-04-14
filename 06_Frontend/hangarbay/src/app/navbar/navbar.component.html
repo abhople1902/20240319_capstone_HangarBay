@@ -1,0 +1,22 @@
+
+<nav class="navbar">
+  <div class="navbar-container container">
+    <input type="checkbox" name="" id="">
+    <div class="hamburger-lines">
+      <span class="line line1"></span>
+      <span class="line line2"></span>
+      <span class="line line3"></span>
+    </div>
+    <ul class="menu-items">
+      <li *ngFor="let item of navitems">
+        <a [routerLink]="[item.route]">
+          <i [class]="item.iconClass"></i><em>{{ item.label }}</em>
+        </a>
+      </li>
+    </ul>
+    <h1 class="logo">HangarBay</h1>
+  </div>
+</nav>
+
+
+

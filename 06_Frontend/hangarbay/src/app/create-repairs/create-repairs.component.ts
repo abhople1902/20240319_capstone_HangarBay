@@ -29,6 +29,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { Router } from '@angular/router';
 import { scheduled } from 'rxjs';
 import { response } from 'express';
+import { isWeakMap } from 'util/types';
 
 
 // Add a model for your form data (modify as needed)
@@ -155,6 +156,7 @@ export class CreateRepairsComponent implements OnInit {
       this.inventoryData.forEach(item => {
         if(item.quantity <= 0) {
           console.log(`${item.name} is out of stock`);
+          alert(`${item.name} is out of stock`);
         }
       })
     } else if(par == 'technician'){
@@ -189,7 +191,7 @@ export class CreateRepairsComponent implements OnInit {
   }
 
 
-  onSubmit() {
+  async onSubmit() {
     const invSelected = this.repairsForm.value.inventoryItems
     const quant = this.repairsForm.value.quantity
     let a = Number(quant);
@@ -199,16 +201,22 @@ export class CreateRepairsComponent implements OnInit {
       return;
     }
 
-    this.inventoryService.getInventoryItemByName(invSelected!).subscribe(response => {
+    let isQuantityAvailable = true;
+
+    await this.inventoryService.getInventoryItemByName(invSelected!).toPromise().then(response => {
       this.particularQuantity = response;
       if(Number(this.particularQuantity) < a){
         console.log(typeof this.particularQuantity);
         console.log(typeof a);
         
         this.openSnackBar('The Inventory Item quantity you selected is unavailable', 'order');
-        return
+        isQuantityAvailable = false;
       }
     })
+
+    if(!isQuantityAvailable) {
+      return;
+    }
 
 
     if (this.repairsForm.valid) {

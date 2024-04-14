@@ -14,11 +14,26 @@ import { ConfirmationComponent } from './pages/confirmation/confirmation.compone
 import { CreateordersComponent } from './pages/createorders/createorders.component';
 import { AllrepairsComponent } from './pages/allrepairs/allrepairs.component';
 import { MyrepairsComponent } from './pages/myrepairs/myrepairs.component';
+import { MyrepairsdashComponent } from './myrepairsdash/myrepairsdash.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CreateRepairsComponent, CreateInventoryComponent, DashboardComponent, OpsdashComponent, CommonModule, HttpClientModule, MatInputModule, ConfirmationComponent, CreateordersComponent, AllrepairsComponent, MyrepairsComponent],
+  imports: [
+    RouterOutlet, 
+    CreateRepairsComponent, 
+    CreateInventoryComponent, 
+    DashboardComponent, 
+    OpsdashComponent, 
+    CommonModule, 
+    HttpClientModule, 
+    MatInputModule, 
+    ConfirmationComponent, 
+    CreateordersComponent, 
+    AllrepairsComponent, 
+    MyrepairsComponent, 
+    MyrepairsdashComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

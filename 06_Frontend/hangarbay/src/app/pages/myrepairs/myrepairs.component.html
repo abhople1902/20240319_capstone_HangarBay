@@ -1,20 +1,9 @@
 <div class="main-content">
 
-  <div class="left">
-    <!-- <app-sidebar [sidebarItems]="[
-    { label: 'Airframe', iconClass: 'fa-solid fa-plane' },
-    { label: 'Engine', iconClass: 'fa-solid fa-gears' },
-    { label: 'Avionics', iconClass: 'fa-solid fa-satellite-dish' },
-    { label: 'Interior', iconClass: 'fa-solid fa-tv' }
-  ]"></app-sidebar> -->
-    <app-sidebar></app-sidebar>
-  </div>
+  <app-navbar></app-navbar>
 
   <div class="right">
-    <div style="display: flex; flex-direction: column;">
-      <img src="assets/myrepairs.jpg" style="width: 500px; height: 300px; margin-left: 300px; margin-bottom: 30px;">
-      <app-repairsdash></app-repairsdash>
-    </div>
+    <app-myrepairsdash></app-myrepairsdash>
   </div>
 
 </div>
