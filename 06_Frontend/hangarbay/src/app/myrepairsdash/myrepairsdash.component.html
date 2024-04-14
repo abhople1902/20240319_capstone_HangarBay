@@ -1,0 +1,40 @@
+<div class="dash">
+  <div class="categoryimage">
+    <img class="imagestyle" [src]="imageUrl">
+  </div>
+
+  <div class="data">
+    <h1 style="font-size: 32px; font-weight: 400px; display: flex;">Hello {{intro}}</h1>
+    <h2 style="font-weight: 200; font-size: 22px; display: flex;">{{position}} logged in</h2>
+
+
+    <h3 style="display: flex;">Specialization: {{specialization}}</h3>
+    <br>
+    <div *ngFor="let repair of repairData">
+      <mat-card class="repairs-card">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{ repair.name }}</mat-card-title>
+            <mat-card-subtitle>{{ repair.description }}</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content style="text-align: right;">
+          <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select [(value)]="repair.status" (selectionChange)="onStatusChange(repair, $event)">
+              <mat-option *ngFor="let status of statuses" [value]="status">{{ status }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button *ngIf="repair.statusChanged" (click)="updateRepairStatus(repair)">Save Changes</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <button mat-raised-button color="primary" *ngIf="position === 'Admin'" (click)="navigateToCreateRepair()"
+      style="margin-top: 25px; margin-bottom: 20px; cursor: pointer; border-radius: 30%; background-color: rgb(22, 22, 99);">Create
+      Repair</button>
+  </div>
+</div>
+
+<div class="full-page-spinner" *ngIf="isLoading">
+  <div class="spinner"></div>
+</div>

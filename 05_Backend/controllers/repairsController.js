@@ -15,42 +15,6 @@ import nodemailer from 'nodemailer';
 /**
  * API for creating repairs
  */
-// router.post('/create', async (req, res) => {
-//   const inputObject = req.body;
-//   console.log(inputObject);
-//   const { description, category, compliance, scheduledDate, status, assignedTechnician, inventoryItems, durationRequired } = req.body;
-
-//   // let validationErrors = validateRepair(inputObject);
-
-//   // if (!(_.isEmpty(validationErrors))) {
-//   //   console.log(validationErrors);
-//   // } else {
-//     try {
-//       const existingRepair = await repair.findOne({ assignedTechnician: assignedTechnician });
-//       if (existingRepair) {
-//         return res.status(400).json({ message: 'Technician already assigned' });
-//       } else {
-//         const newRepair = new repair({
-//           description,
-//           category,
-//           compliance,
-//           scheduledDate,
-//           status,
-//           assignedTechnician,
-//           inventoryItems,
-//           durationRequired
-//         })
-//         await newRepair.save();
-//         res.status(201).json({ message: 'Repair created successfully' });
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ messgae: 'Internal Server Error' });
-//     }
-//   // }
-
-// })
-
 async function createRepairs(req, res) {
   const inputObject = req.body;
   console.log(inputObject);
@@ -63,40 +27,41 @@ async function createRepairs(req, res) {
   // } else {
   try {
     const techinfo = await Technician.findOne({ username: assignedTechnician });
-    // const existingRepair = await Repair.findOne({ assignedTechnician: assignedTechnician });
-    // if (existingRepair) {
-    //   return res.status(400).json({ message: 'Technician already assigned' });
-    // } else {
-    const newRepair = new Repair({
-      name: req.body.name,
-      description: req.body.description,
-      category: req.body.category,
-      durationRequired: req.body.durationRequired,
-      quantity: req.body.quantity,
-      compliance: req.body.compliance,
-      scheduledDate: req.body.scheduledDate,
-      status: req.body.status,
-      assignedTechnician: req.body.assignedTechnician,
-      inventoryItems: req.body.inventoryItems,
-    })
-    await newRepair.save();
-    
+    const existingRepair = await Repair.findOne({ assignedTechnician: assignedTechnician });
+    if (existingRepair) {
+      alert("Technician already assigned");
+      return res.status(400).json({ message: 'Technician already assigned' });
+    } else {
+      const newRepair = new Repair({
+        name: req.body.name,
+        description: req.body.description,
+        category: req.body.category,
+        durationRequired: req.body.durationRequired,
+        quantity: req.body.quantity,
+        compliance: req.body.compliance,
+        scheduledDate: req.body.scheduledDate,
+        status: req.body.status,
+        assignedTechnician: req.body.assignedTechnician,
+        inventoryItems: req.body.inventoryItems,
+      })
+      await newRepair.save();
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: 'nodemailer470@gmail.com',
-        //  Pass contain the App passwords 
-        pass: 'aydr qxge onmi dcik'
-      }
-    });
 
-    const emailData = {
-      from: 'Air India Hangar', // Sender information
-      to: techinfo.email, // Use fetched patient email
-      subject: 'New Repair scheduled',
-      text: `The following repair is created and assigned to you`,
-      html: `<!DOCTYPE html>
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: 'nodemailer470@gmail.com',
+          //  Pass contain the App passwords 
+          pass: 'aydr qxge onmi dcik'
+        }
+      });
+
+      const emailData = {
+        from: 'Air India Hangar', // Sender information
+        to: techinfo.email, // Use fetched patient email
+        subject: 'New Repair scheduled',
+        text: `The following repair is created and assigned to you`,
+        html: `<!DOCTYPE html>
               <html>
               <body>
                 <h1>Air India Hangar</h1>
@@ -118,11 +83,11 @@ async function createRepairs(req, res) {
       await transporter.sendMail(emailData);
 
       res.status(201).json({ message: 'Repair created successfully and mail sent' });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ messgae: 'Internal Server Error' });
   }
-  // }
 }
 
 
@@ -138,25 +103,6 @@ async function createRepairs(req, res) {
 /**
  * API to get all repairs
  */
-// router.get('/all', async (req, res) => {
-//   const repairId = req.params.id;
-
-//   try {
-//     const doc = await repair.find();
-
-//     // Check if the repairs exists
-//     if (!doc) {
-//       return res.status(404).json({ message: 'No Repairs found. Come back later' });
-//     }
-//     // Return the repairs
-//     res.json(doc);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Internal Server Error' });
-//   }
-// });
-
-
 async function getRepairs(req, res) {
 
   try {

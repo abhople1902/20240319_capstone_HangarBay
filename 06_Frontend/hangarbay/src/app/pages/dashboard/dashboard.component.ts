@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import Chart from 'chart.js/auto';
 import { StatsComponent } from '../../stats/stats.component';
+import { NavbarComponent } from '../../navbar/navbar.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [SidebarComponent, StatsComponent, RepairsdashComponent, HttpClientModule, CommonModule],
+  imports: [SidebarComponent, NavbarComponent, StatsComponent, RepairsdashComponent, HttpClientModule, CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

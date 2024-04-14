@@ -177,13 +177,14 @@ export class SigninComponent {
           const role = response.role;
           const techId = response.techId;
           const username = response.username;
+          const specialization = response.specialization;
 
           if (token && role) {
-            console.log(token);
             localStorage.setItem('userToken', token);
             localStorage.setItem('role', role);
             localStorage.setItem('techId', techId);
             localStorage.setItem('username', username);
+            localStorage.setItem('category', specialization);
 
             this.authService.logIn();
             // Navigate to the home page if the token is present

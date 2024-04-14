@@ -1,9 +1,10 @@
 .main-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .right {
+  margin-top: 80px;
   width: 100%;
   display: block;
   align-items: center;

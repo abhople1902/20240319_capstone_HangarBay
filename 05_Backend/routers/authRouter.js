@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 import _ from 'lodash';
 
-import { technicianSignup, technicianLogin, forget_password, reset_password, orgSignup, orgLogin } from '../controllers/authController.js';
+import { technicianSignup, technicianLogin, forget_password, reset_password } from '../controllers/authController.js';
 
 router.post("/techsignup", technicianSignup);
 
