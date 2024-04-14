@@ -1,14 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+
+
+//Services
+import { CreateRepairService } from '../services/createrepair/create-repair.service';
+import { error } from 'console';
 
 
 @Component({
   selector: 'app-repairsdash',
   standalone: true,
-  imports: [MatCardModule, CommonModule],
+  imports: [MatCardModule, CommonModule, MatFormFieldModule, MatSelectModule, MatButtonModule],
   templateUrl: './repairsdash.component.html',
   styleUrls: ['./repairsdash.component.css']
 })
@@ -19,11 +27,45 @@ export class RepairsdashComponent implements OnInit {
   repairData: any[] = [];
   intro = '';
   position: String = '';
+  isLoading: Boolean = false
+  // statusChanged: Boolean = false;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  statuses = ['In Progress', 'Completed', 'Delayed'];
+
+  constructor(private http: HttpClient, private router: Router, private createRepairService: CreateRepairService) { }
 
   ngOnInit(): void {
     this.fetchRepairData();
+
+    this.repairData.forEach(repair => {
+      repair.statusChanged = false;
+    });
+  }
+
+  onStatusChange(repair: any, event: any) {
+    repair.statusChanged = true;
+  }
+
+
+  updateRepairStatus(repair: any) {
+    console.log(repair);
+    
+
+    const statusData = {
+      status: repair.status
+    }
+    this.createRepairService.updateRepair(statusData, repair._id).subscribe(
+      (response) => {
+        console.log("Repair status updated:\n", response);
+        this.isLoading = true; // Show loading indicator
+        setTimeout(() => {
+          window.location.reload();
+          this.isLoading = false; // Hide loading indicator after reloading
+        }, 3000);
+      },
+      (error) => {
+        console.log(error);
+      });
   }
 
   fetchRepairData() {

@@ -244,6 +244,7 @@ async function updateRepair(req, res) {
   try {
     // Find the repair by ID
     const doc = await Repair.findById(repairId);
+    console.log(doc);
 
     // Check if the repair exists
     if (!doc) {

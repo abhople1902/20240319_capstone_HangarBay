@@ -1,0 +1,26 @@
+<div style="display: flex; flex-direction: column; width: 100%;">
+  <h1>Hello {{intro}}</h1>
+  <h2>{{position}} logged in</h2>
+  <div style="display: flex; flex-direction: row; width: 100%;">
+    <div class="card">
+      <div class="card-body">
+        <div class="title">Total Repairs</div>
+        <div class="value">{{ totalRepairs }}</div>
+      </div>
+      <div style="margin-left: 165px;">
+        <img src="assets/dash1.png" style="height: 125px; width: 115px;">
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="card-body">
+        <div class="title">Inventory</div>
+        <div class="value">{{ totalInventory }}</div>
+      </div>
+      <div style="margin-left: 165px;">
+        <img src="assets/dash2.png" style="height: 125px; width: 155px;">
+      </div>
+    </div>
+  </div>
+</div>

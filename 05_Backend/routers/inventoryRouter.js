@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 // const inventory = require('../models/inventoryModel');
 
-import { getInventory, getInventoryByName, addInventoryItem, updateInventory } from '../controllers/inventoryController.js';
+import { getInventory, getInventoryByName, addInventoryItem, updateInventory, getAllInventory } from '../controllers/inventoryController.js';
 
 
 // import { validateInventoryItem } from '../validators/itemvalidator';
@@ -19,6 +19,8 @@ router.get("/items", getInventory);
 
 
 router.get("/itemname", getInventoryByName);
+
+router.get("/allitems", getAllInventory);
 
 
 
