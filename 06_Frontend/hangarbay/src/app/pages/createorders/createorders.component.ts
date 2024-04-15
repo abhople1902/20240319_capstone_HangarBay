@@ -42,7 +42,7 @@ import { SidebarComponent } from '../../sidebar/sidebar.component';
 export class CreateordersComponent implements OnInit {
 
   orderData: any[] = [];
-
+  isLoading: Boolean = false;
 
   orderForm = new FormGroup({
     itemName: new FormControl('', Validators.required),
@@ -88,10 +88,11 @@ export class CreateordersComponent implements OnInit {
       this.createOrderService.createOrder(itemData).subscribe(
         (response) => {
           console.log('Order created successfully:', response);
-
-          // TO DO
-          // this.router.navigateByUrl('/confirmationpage');
-          
+          this.isLoading = true;
+          setTimeout(() => {
+            this.router.navigate(['dash']);
+            this.isLoading = false;
+          }, 3000);
         },
         (error) => {
           console.error(error);
@@ -99,5 +100,9 @@ export class CreateordersComponent implements OnInit {
         }
       );
     }
+  }
+
+  navigateBack() {
+    this.router.navigate(['dash']);
   }
 }

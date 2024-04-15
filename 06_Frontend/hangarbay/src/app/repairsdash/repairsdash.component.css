@@ -6,7 +6,7 @@
 }
 
 .dash h1, .dash h2, .dash h3 {
-  text-align: center;
+  text-align: left;
   font-family: Arial, sans-serif; /* Change the font family as needed */
   font-weight: 600;
   color: rgb(18, 16, 113);

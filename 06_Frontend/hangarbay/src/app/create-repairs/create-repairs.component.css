@@ -1,5 +1,6 @@
 /* Styles for the inside content */
 .inside-content {
+  margin-top: 70px;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -9,7 +10,7 @@
 .create-repairs-page {
   display: flex;
   justify-content: center;
-  margin: 30px 0;
+  margin: 0px;
 }
 
 /* Styles for the form details */
@@ -25,7 +26,7 @@
   flex-direction: column;
   width: 500px;
   height: 150vh;
-  background: radial-gradient(993px at 0.5% 98.5%, rgb(92, 114, 114) 0%, rgb(26, 41, 43) 46.7%, rgb(0, 0, 0) 100.2%);
+  background: radial-gradient(993px at 0.5% 98.5%, rgb(213, 220, 220) 0%, rgb(184, 187, 187) 46.7%, rgb(255, 255, 255) 100.2%);
   position: absolute;
   top: 0;
   right: -300px;
@@ -33,18 +34,21 @@
   overflow-y: scroll;
 }
 
-.repairs-card {
+.repairs-card-create {
   margin-bottom: 10px;
-  border-bottom: 3px;
-  border-color: rgb(255, 255, 255);
-  background-color: #000000;
+  margin-left: 15px;
+  margin-right: 15px;
+  border: 3px;
+  border-color: rgb(0, 0, 0);
+  background-color: #ffffff;
   border-radius: 6px;
-  color: #ffffff;
+  color: #000000;
   margin-top: 20px;
 }
 
 .right-section h1 {
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   margin-top: 350px;
   font-weight: 400;
+  text-align: center;
 }

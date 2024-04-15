@@ -4,11 +4,12 @@ import { RepairsdashComponent } from '../../repairsdash/repairsdash.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../../navbar/navbar.component';
 
 @Component({
   selector: 'app-confirmation',
   standalone: true,
-  imports: [SidebarComponent, RepairsdashComponent, HttpClientModule, CommonModule],
+  imports: [SidebarComponent, NavbarComponent, RepairsdashComponent, HttpClientModule, CommonModule],
   templateUrl: './confirmation.component.html',
   styleUrl: './confirmation.component.css'
 })

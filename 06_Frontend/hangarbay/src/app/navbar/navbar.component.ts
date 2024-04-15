@@ -40,4 +40,13 @@ export class NavbarComponent implements OnInit{
       }
   }
 
+  logout() {
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('role');
+    localStorage.removeItem('techId');
+    localStorage.removeItem('username');
+    localStorage.removeItem('category');
+    this.router.navigate(['']);
+  }
+
 }

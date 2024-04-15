@@ -10,8 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 //Services
 import { ComplianceService } from '../services/complianceService/compliance.service';
@@ -52,6 +53,7 @@ import { isWeakMap } from 'util/types';
     MatNativeDateModule,
     MatCardModule,
     MatButtonModule,
+    NavbarComponent,
     CommonModule
   ],
   animations: [
@@ -119,7 +121,7 @@ export class CreateRepairsComponent implements OnInit {
   constructor(private dataService: DataService, private dialog: MatDialog, private complianceService: ComplianceService, private inventoryService: InventoryService, private technicianService: TechnicianService, private createRepairService: CreateRepairService, private router: Router, private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    // No need to fetch information initially
+    
   }
 
   openDialog() {
@@ -156,7 +158,6 @@ export class CreateRepairsComponent implements OnInit {
       this.inventoryData.forEach(item => {
         if(item.quantity <= 0) {
           console.log(`${item.name} is out of stock`);
-          alert(`${item.name} is out of stock`);
         }
       })
     } else if(par == 'technician'){
@@ -168,6 +169,8 @@ export class CreateRepairsComponent implements OnInit {
       }
       this.technicianService.getTechnician(techData).subscribe(response => {
         this.technicianData = response;
+        console.log(this.technicianData);
+        
       })
     }
 
@@ -242,44 +245,12 @@ export class CreateRepairsComponent implements OnInit {
       this.createRepairService.createRepair(repairData).subscribe(
         (response) => {
           console.log('Repair created successfully:', response);
-
-
-
-          // TO DO
-          // this.router.navigateByUrl('/confirmationpage');
           
         },
         (error) => {
           console.error(error);
-          // Add any additional logic for error handling
         }
       );
-
-      // nodemailer functionality to mail the technician about the repair
-      // const transporter = nodemailer.createTransport({
-      //   service: "gmail",
-      //   auth: {
-      //     user: 'bhopleap@rknec.edu', 
-      //     //  Pass contain the App passwords 
-      //     pass: 'qymvuh-nezxok-Gapsa2'
-      //   }
-      // });
-
-      // this.technicianService.getTechnicianByName(this.repairsForm.value.assignedTechnician!).subscribe(
-      //   (response) => {
-      //     this.assignedPersonnel = response;
-      //     console.log(this.assignedPersonnel);
-          
-      //   }
-      // )
-
-      // const emailData = {
-      //   from: 'Air India Hangar', // Sender information
-      //   to: this.assignedPersonnel, // Use fetched patient email
-      //   subject: 'New Prescription from Hospital',
-      //   text: `Dear Patient,\n\nA new prescription has been created for you.\n\nDetails:\n* Disease: ${disease}\n*
-      // };
-
 
 
       this.createRepairService.updateInventory(updateData, invSelected!).subscribe(

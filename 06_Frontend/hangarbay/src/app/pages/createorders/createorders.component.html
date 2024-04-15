@@ -1,12 +1,6 @@
 <div class="main-content">
 
-  <div class="left">
-    <!-- <app-sidebar [sidebarItems]="[
-  { label: 'Back to all repairs', iconClass: 'fa-solid fa-plane', route: '/'},
-  { label: 'Compliances', iconClass: 'fa-solid fa-tv', route: '/regulations'}
- ]"></app-sidebar> -->
-  </div>
-
+  <button (click)="navigateBack()" style="width: 90px; height: 45px;"> Home</button>
 
   <div class="right">
     <div class="create-cause-page">
@@ -54,4 +48,8 @@
     </div>
   </div>
 
+</div>
+
+<div class="full-page-spinner" *ngIf="isLoading">
+  <div class="spinner"></div>
 </div>

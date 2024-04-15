@@ -41,35 +41,45 @@ export class CreateInventoryComponent {
     quantity: new FormControl(0, Validators.required),
     unitPrice: new FormControl(0, Validators.required),
   });
-
+  isLoading: Boolean = false;
   categories = ['Airframe', 'Engine', 'Avionics', 'Interior'];
 
   constructor(private createItemService: CreateItemService, private router: Router) { }
-  
+
 
   onSubmit() {
     if (this.inventoryForm.valid) {
       const itemData = {
-        name:this.inventoryForm.value.name,
-        category:this.inventoryForm.value.category,
-        quantity:this.inventoryForm.value.quantity,
-        unitPrice:this.inventoryForm.value.unitPrice,
+        name: this.inventoryForm.value.name,
+        category: this.inventoryForm.value.category,
+        quantity: this.inventoryForm.value.quantity,
+        unitPrice: this.inventoryForm.value.unitPrice,
       };
 
       console.log(itemData)
       this.createItemService.createItem(itemData).subscribe(
         (response) => {
           console.log('Item created successfully:', response);
-
-          // TO DO
-          // this.router.navigateByUrl('/confirmationpage');
-          
+          this.isLoading = true;
+          setTimeout(() => {
+            this.router.navigate(['dash']);
+            this.isLoading = false;
+          }, 3000);
         },
         (error) => {
           console.error(error);
           // Add any additional logic for error handling
         }
       );
+    }
+  }
+
+  navigateBack() {
+    const whoareyou = localStorage.getItem('role');
+    if(whoareyou === 'admin'){
+      this.router.navigate(['dash']);
+    } else if (whoareyou === 'operator'){
+      this.router.navigate(['opsdash']);
     }
   }
 }

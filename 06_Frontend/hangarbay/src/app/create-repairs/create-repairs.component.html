@@ -1,4 +1,4 @@
-<button (click)="navigateBack()" style="width: 90px; height: 45px;"> Home</button>
+<app-navbar></app-navbar>
 
 <div class="create-repairs-page">
   <div class="inside-content">
@@ -16,7 +16,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Duration Required</mat-label>
+          <mat-label>Duration Required (in hrs)</mat-label>
           <input matInput formControlName="durationRequired" required>
           <mat-error *ngIf="(repairsForm.get('durationRequired')?.hasError('required') ?? false)">Duration is
             required</mat-error>
@@ -63,16 +63,24 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Assign operator</mat-label>
-          <textarea matInput formControlName="assignedTechnician" required (click)="toggleSection('technician')"
-            (blur)="toggleSection('technician')"></textarea>
+          <mat-select formControlName="assignedTechnician" required (click)="toggleSection('technician')"
+          (blur)="toggleSection('technician')">
+            <mat-option *ngFor="let techie of technicianData" [value]="techie.username">
+              {{ techie.username }}
+            </mat-option>
+          </mat-select>
           <mat-error *ngIf="(repairsForm.get('assignedTechnician')?.hasError('required') ?? false)">Please assign the
             task to a technician</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Inventory requirements</mat-label>
-          <textarea matInput formControlName="inventoryItems" (click)="toggleSection('inventory')"
-            (blur)="toggleSection('compliance')"></textarea>
+          <mat-select formControlName="inventoryItems" required (click)="toggleSection('inventory')"
+          (blur)="toggleSection('inventory')">
+            <mat-option *ngFor="let inv of inventoryData" [value]="inv.name">
+              {{ inv.name }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -82,13 +90,17 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Regulations</mat-label>
-          <textarea matInput formControlName="compliance" required (click)="toggleSection('compliance')"
-            (blur)="toggleSection('compliance')"></textarea>
+          <mat-select formControlName="assignedTechnician" required (click)="toggleSection('compliance')"
+          (blur)="toggleSection('compliance')">
+            <mat-option *ngFor="let comp of complianceData" [value]="comp.title">
+              {{ comp.title }}
+            </mat-option>
+          </mat-select>
           <mat-error *ngIf="(repairsForm.get('compliance')?.hasError('required') ?? false)">Please specify the
             regulations</mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit" [disabled]="repairsForm.invalid">Submit</button>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
       </form>
     </div>
   </div>
@@ -98,7 +110,7 @@
       <h1>All Compliances</h1>
       <br>
       <div *ngFor="let compliance of complianceData">
-        <mat-card class="repairs-card">
+        <mat-card class="repairs-card-create">
           <mat-card-header>
             <mat-card-title-group>
               <mat-card-title>{{ compliance.title }}</mat-card-title> <!-- Use category as title -->
