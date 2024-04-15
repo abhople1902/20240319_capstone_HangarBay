@@ -96,6 +96,7 @@ export class CreateRepairsComponent implements OnInit {
   technicianData: any[] = [];
   categorySelected: any;
   formFieldClicked: any;
+  whoareu = localStorage.getItem('token');
 
   assignedPersonnel: string = '';
 
@@ -194,6 +195,7 @@ export class CreateRepairsComponent implements OnInit {
   }
 
 
+  
   async onSubmit() {
     const invSelected = this.repairsForm.value.inventoryItems
     const quant = this.repairsForm.value.quantity
@@ -209,8 +211,6 @@ export class CreateRepairsComponent implements OnInit {
     await this.inventoryService.getInventoryItemByName(invSelected!).toPromise().then(response => {
       this.particularQuantity = response;
       if(Number(this.particularQuantity) < a){
-        console.log(typeof this.particularQuantity);
-        console.log(typeof a);
         
         this.openSnackBar('The Inventory Item quantity you selected is unavailable', 'order');
         isQuantityAvailable = false;

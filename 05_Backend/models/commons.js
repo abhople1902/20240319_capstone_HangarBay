@@ -1,6 +1,19 @@
 import mongoose from 'mongoose';
 import { category } from '../constants.js';
 
+
+/**
+ * Minor fault schema,
+ * name: defines the name of the fault,
+ */
+const MinorFaultSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  }
+})
+
+
 /**
  * Compliance schema,
  * title: defines the title of compliance,
@@ -112,6 +125,7 @@ const OrderSchema = new mongoose.Schema({
 
 
 export { 
+  MinorFaultSchema,
   ComplianceSchema,
   InventoryItemSchema,
   TechnicianSchema,

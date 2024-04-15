@@ -12,12 +12,18 @@ export class CreateRepairService {
   private apiUrl = 'http://localhost:3000/repairs/create';
   private apiUrl2 = 'http://localhost:3000/inventory';
   private apiurl3 = 'http://localhost:3000/repairs';
-  // private bearerToken = localStorage.getItem('orgToken');
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private httpHeaders: HttpHeaders) { }
 
   createRepair(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+    const jwt = localStorage.getItem('token');
+
+    const headers = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${jwt}`
+      })
+    }
+    return this.http.post(this.apiUrl, data, headers);
   }
 
   updateInventory(data: any, name: string): Observable<any> {

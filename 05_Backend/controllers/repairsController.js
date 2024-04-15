@@ -4,7 +4,7 @@ import _ from 'lodash';
 // const inventory = require('../models/inventoryScheme');
 
 import Repair from '../models/repairsModel.js';
-// const Technician = require('../models/technicianScheme');
+import { Fault } from '../models/faultModel.js';
 import Technician from '../models/technicianModel.js';
 import nodemailer from 'nodemailer';
 
@@ -16,6 +16,10 @@ import nodemailer from 'nodemailer';
  * API for creating repairs
  */
 async function createRepairs(req, res) {
+  const user = req.user;
+  if(!user.role == 'admin'){
+    res.status(501).json("You are not authorized");
+  }
   const inputObject = req.body;
   console.log(inputObject);
   const { name, description, category, compliance, scheduledDate, status, assignedTechnician, inventoryItems, durationRequired } = req.body;
@@ -29,7 +33,6 @@ async function createRepairs(req, res) {
     const techinfo = await Technician.findOne({ username: assignedTechnician });
     const existingRepair = await Repair.findOne({ assignedTechnician: assignedTechnician });
     if (existingRepair) {
-      alert("Technician already assigned");
       return res.status(400).json({ message: 'Technician already assigned' });
     } else {
       const newRepair = new Repair({
@@ -94,6 +97,38 @@ async function createRepairs(req, res) {
 
 
 
+/**
+ * API to store a minor fault
+ */
+async function createFault(req, res) {
+  const { name } = req.body;
+  const newFault = new Fault({
+    name: req.body.name
+  })
+  await newFault.save();
+  res.status(201).json({ message: 'Fault created successfully' });
+}
+
+
+
+
+
+
+/**
+ * API to get fault name
+ */
+async function getFault(req, res){
+  try {
+    const doc = await Fault.find();
+    if (!doc) {
+      return res.status(404).json({ message: 'No Faults found. Check back later' });
+    }
+    res.json(doc);
+  } catch (error){
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server error' });
+  }
+}
 
 
 
@@ -110,7 +145,7 @@ async function getRepairs(req, res) {
 
     // Check if the repairs exists
     if (!doc) {
-      return res.status(404).json({ message: 'No Repairs found. Come back later' });
+      return res.status(404).json({ message: 'No Repairs found. Check back later' });
     }
     // Return the repairs
     res.json(doc);
@@ -213,6 +248,8 @@ async function updateRepair(req, res) {
 
 export {
   createRepairs,
+  createFault,
+  getFault,
   getRepairs,
   getRepairsByUsername,
   updateRepair
