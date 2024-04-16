@@ -14,7 +14,7 @@ import requireLogin from "../middleware/requireLogin.js";
 /**
  * API for creating repairs
  */
-router.post("/create", requireLogin, createRepairs);
+router.post("/create", createRepairs);
 
 router.post("/newfault", createFault);
 

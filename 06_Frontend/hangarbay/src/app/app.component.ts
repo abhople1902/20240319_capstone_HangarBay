@@ -15,6 +15,7 @@ import { CreateordersComponent } from './pages/createorders/createorders.compone
 import { AllrepairsComponent } from './pages/allrepairs/allrepairs.component';
 import { MyrepairsComponent } from './pages/myrepairs/myrepairs.component';
 import { MyrepairsdashComponent } from './myrepairsdash/myrepairsdash.component';
+import { MinirepairsComponent } from './pages/minirepairs/minirepairs.component';
 
 @Component({
   selector: 'app-root',

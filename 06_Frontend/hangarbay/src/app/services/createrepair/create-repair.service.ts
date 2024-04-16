@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UUID } from 'mongodb';
 
@@ -13,17 +13,15 @@ export class CreateRepairService {
   private apiUrl2 = 'http://localhost:3000/inventory';
   private apiurl3 = 'http://localhost:3000/repairs';
 
-  constructor(private http: HttpClient, private httpHeaders: HttpHeaders) { }
+  constructor(private http: HttpClient) { }
 
   createRepair(data: any): Observable<any> {
-    const jwt = localStorage.getItem('token');
-
-    const headers = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${jwt}`
-      })
-    }
-    return this.http.post(this.apiUrl, data, headers);
+    // const headers = {
+    //   headers: new HttpHeaders({
+    //     'Authorization': `Bearer ${jwt}`
+    //   })
+    // }
+    return this.http.post(this.apiUrl, data);
   }
 
   updateInventory(data: any, name: string): Observable<any> {

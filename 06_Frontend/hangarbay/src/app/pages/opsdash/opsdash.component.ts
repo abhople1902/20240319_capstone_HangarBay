@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SidebarComponent } from '../../sidebar/sidebar.component';
 import { RepairsdashComponent } from '../../repairsdash/repairsdash.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../navbar/navbar.component';
@@ -14,5 +14,5 @@ import { NavbarComponent } from '../../navbar/navbar.component';
   styleUrl: './opsdash.component.css'
 })
 export class OpsdashComponent {
-
+  constructor(private http: HttpClient, private router: Router) { }
 }

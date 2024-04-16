@@ -12,6 +12,7 @@ import { CreateordersComponent } from './pages/createorders/createorders.compone
 import { AllrepairsComponent } from './pages/allrepairs/allrepairs.component';
 import { MyrepairsComponent } from './pages/myrepairs/myrepairs.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { MinirepairsComponent } from './pages/minirepairs/minirepairs.component';
 
 export const routes: Routes = [
   { path: '', component: FrontComponent },
@@ -25,5 +26,6 @@ export const routes: Routes = [
   { path: 'order', component: CreateordersComponent },
   { path: 'allrepairs', component: AllrepairsComponent },
   { path: 'myrepairs', component: MyrepairsComponent },
+  { path: 'createfault', component: MinirepairsComponent },
   { path: '**', component: NotfoundComponent }
 ];

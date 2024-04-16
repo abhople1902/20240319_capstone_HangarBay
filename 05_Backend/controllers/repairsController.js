@@ -16,10 +16,10 @@ import nodemailer from 'nodemailer';
  * API for creating repairs
  */
 async function createRepairs(req, res) {
-  const user = req.user;
-  if(!user.role == 'admin'){
-    res.status(501).json("You are not authorized");
-  }
+  // const user = req.user;
+  // if(!user.role == 'admin'){
+  //   res.status(501).json("You are not authorized");
+  // }
   const inputObject = req.body;
   console.log(inputObject);
   const { name, description, category, compliance, scheduledDate, status, assignedTechnician, inventoryItems, durationRequired } = req.body;
