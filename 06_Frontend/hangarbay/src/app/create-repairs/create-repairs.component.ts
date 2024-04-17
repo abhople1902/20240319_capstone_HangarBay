@@ -196,7 +196,7 @@ export class CreateRepairsComponent implements OnInit {
 
 
   
-  async onSubmit() {
+  onSubmit() {
     const invSelected = this.repairsForm.value.inventoryItems
     const quant = this.repairsForm.value.quantity
     let a = Number(quant);
@@ -208,7 +208,7 @@ export class CreateRepairsComponent implements OnInit {
 
     let isQuantityAvailable = true;
 
-    await this.inventoryService.getInventoryItemByName(invSelected!).toPromise().then(response => {
+    this.inventoryService.getInventoryItemByName(invSelected!).toPromise().then(response => {
       this.particularQuantity = response;
       if(Number(this.particularQuantity) < a){
         
@@ -217,9 +217,9 @@ export class CreateRepairsComponent implements OnInit {
       }
     })
 
-    if(!isQuantityAvailable) {
-      return;
-    }
+    // if(!isQuantityAvailable) {
+    //   return;
+    // }
 
 
     if (this.repairsForm.valid) {
