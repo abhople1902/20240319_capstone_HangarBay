@@ -49,5 +49,5 @@ connectDatabase().then(() => {
   });
 }).catch(error => {
   console.error("Error connecting to database:", error);
-  process.exit(1); // Exit the process with error status code
+  process.exit(1);
 });

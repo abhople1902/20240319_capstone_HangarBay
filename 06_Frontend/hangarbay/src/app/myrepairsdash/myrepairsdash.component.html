@@ -10,6 +10,7 @@
 
     <h3 style="display: flex;">Specialization: {{specialization}}</h3>
     <br>
+    <h2>Repairs</h2>
     <div *ngFor="let repair of repairData">
       <mat-card class="repairs-card">
         <mat-card-header>
@@ -29,9 +30,26 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <button mat-raised-button color="primary" *ngIf="position === 'Admin'" (click)="navigateToCreateRepair()"
-      style="margin-top: 25px; margin-bottom: 20px; cursor: pointer; border-radius: 30%; background-color: rgb(22, 22, 99);">Create
-      Repair</button>
+    
+    <h2>Faults</h2>
+    <div *ngFor="let fault of faultData">
+      <mat-card class="repairs-card">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{ fault.name }}</mat-card-title>
+          </mat-card-title-group>
+        </mat-card-header>
+        <!-- <mat-card-content style="text-align: right;">
+          <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select [(value)]="repair.status" (selectionChange)="onStatusChange(repair, $event)">
+              <mat-option *ngFor="let status of statuses" [value]="status">{{ status }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button *ngIf="repair.statusChanged" (click)="updateRepairStatus(repair)">Save Changes</button>
+        </mat-card-content> -->
+      </mat-card>
+    </div>
   </div>
 </div>
 

@@ -23,6 +23,7 @@ export class MyrepairsdashComponent implements OnInit {
   // cardTitle: string = '';
   // cardSubtitle: string = '';
   repairData: any[] = [];
+  faultData: any[] = [];
   intro = '';
   position: String = '';
   isLoading: Boolean = false;
@@ -54,6 +55,8 @@ export class MyrepairsdashComponent implements OnInit {
     this.repairData.forEach(repair => {
       repair.statusChanged = false;
     });
+
+    this.fetchFaultData();
   }
 
   onStatusChange(repair: any, event: any) {
@@ -107,6 +110,18 @@ export class MyrepairsdashComponent implements OnInit {
           console.log('Error fetching repair data:', error);
         }
       );
+  }
+
+  fetchFaultData() {
+    this.http.get<any>(`http://localhost:3000/repairs/allfaults`)
+      .subscribe(
+        (data: any[]) => {
+          this.faultData = data;
+        },
+        error => {
+          console.log('Error fetching fault data:', error);
+        }
+      )
   }
 
   navigateToCreateRepair() {

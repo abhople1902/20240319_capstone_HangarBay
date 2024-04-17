@@ -28,14 +28,14 @@ export class NavbarComponent implements OnInit{
         this.navitems = [
           { label: 'Home', iconClass: 'fa-solid fa-plane', route: '/opsdash'},
           { label: 'My Repairs', iconClass: 'fa-solid fa-plane', route: '/myrepairs'},
-          { label: 'Inventory', iconClass: 'fa-solid fa-gears', route: '/addinventory'}
+          { label: 'Raise Fault', iconClass: 'fa-solid fa-plane', route: '/createfault'},
+          { label: 'Spare parts order', iconClass: 'fa-solid fa-gears', route: '/order'}
         ];
       } else if(whoareyou == "admin"){
         this.navitems = [
           { label: 'Home', iconClass: 'fa-solid fa-plane', route: '/dash'},
           { label: 'All Repairs', iconClass: 'fa-solid fa-plane', route: '/allrepairs'},
           { label: 'Create Repair', iconClass: 'fa-solid fa-plane', route: '/createrepairs'},
-          { label: 'Raise Fault', iconClass: 'fa-solid fa-plane', route: '/createfault'},
           { label: 'Create Inventory item', iconClass: 'fa-solid fa-gears', route: '/addinventory'},
           { label: 'Spare parts order', iconClass: 'fa-solid fa-gears', route: '/order'}
         ];
